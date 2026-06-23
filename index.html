@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COEMERE — Comisión Estatal de Mejora Regulatoria · Hidalgo</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#A02142;
+  --g2:#691B31;
+  --d:#BC955B;
+  --d2:#DDC9A3;
+  --gris:#98989A;
+  --gris2:#6F7271;
+  --crema:#FAF8F5;
+  --borde:#EAE6DF;
+  --texto:#1A1410;
+  --texto2:#6B5E52;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;height:60px;
+  background:white;border-bottom:1px solid var(--borde);
+  box-shadow:0 1px 8px rgba(0,0,0,.06);
+  display:flex;align-items:center;
+  justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-star{width:28px;height:28px;flex-shrink:0}
+.nav-gov{width:36px;height:36px;object-fit:contain;flex-shrink:0}
+.nav-sep{width:1px;height:28px;background:rgba(255,255,255,.2);margin:0 10px;flex-shrink:0}
+.nav-name{color:var(--g);font-size:13px;font-weight:600;letter-spacing:.4px}
+.nav-name small{display:block;font-size:9px;font-weight:400;color:var(--texto2);opacity:1;letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:0}
+.nl{
+  color:var(--texto2);font-size:12px;font-weight:400;
+  padding:6px 12px;border:none;background:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;text-decoration:none;
+  transition:color .15s;letter-spacing:.2px;
+}
+.nl:hover{color:var(--g)}
+.nl.pill{
+  color:var(--g);border:1px solid rgba(152,34,51,.25);
+  border-radius:4px;margin-left:6px;
+}
+.nl.pill:hover{background:rgba(152,34,51,.06)}
+.nav-cta{
+  color:white;font-size:12px;font-weight:600;
+  padding:7px 18px;border:none;border-radius:4px;
+  background:var(--g);cursor:pointer;font-family:'Montserrat',sans-serif;
+  text-decoration:none;transition:all .15s;letter-spacing:.3px;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--g2);color:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:20px;height:1.5px;background:var(--texto);border-radius:2px;transition:all .25s;display:block}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob-menu{
+  display:none;position:fixed;top:60px;left:0;right:0;z-index:199;
+  background:var(--g2);flex-direction:column;
+  border-bottom:1px solid rgba(188,149,91,.15);
+}
+.mob-menu.open{display:flex}
+.mob-menu a,.mob-menu button{
+  color:rgba(255,255,255,.8);font-size:13px;padding:14px clamp(1.25rem,5vw,3rem);
+  border:none;background:none;cursor:pointer;font-family:'Montserrat',sans-serif;
+  text-decoration:none;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .15s;
+}
+.mob-menu a:hover,.mob-menu button:hover{color:var(--d2)}
+.mob-cta{color:var(--d) !important;font-weight:600 !important}
+
+/* PÁGINAS */
+.page{display:none}.page.active{display:block}
+.landing{display:block}.landing.hidden{display:none}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background: linear-gradient(rgba(152, 34, 51, 0.80), rgba(152, 34, 51, 0.90)), url('assets/img/cover.jpg');
+  background-size: cover;
+  background-position: center;
+  display:flex;align-items:center;
+  padding:calc(60px + 5rem) clamp(1.25rem,5vw,3rem) 5rem;
+  position:relative;overflow:hidden;
+}
+/* Sutil línea diagonal dorada — única textura */
+.hero::after{
+  content:'';position:absolute;
+  width:1px;height:100%;
+  right:clamp(120px,20vw,260px);top:0;
+  background:linear-gradient(to bottom,transparent,rgba(188,149,91,.25) 30%,rgba(188,149,91,.25) 70%,transparent);
+  pointer-events:none;
+}
+.hero-inner{max-width:640px;position:relative;z-index:2}
+.hero-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--d);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--d);display:block}
+.hero h1{
+  font-size:clamp(32px,5vw,54px);font-weight:300;
+  color:white;line-height:1.2;margin-bottom:1.5rem;
+  letter-spacing:-.5px;
+}
+.hero h1 strong{font-weight:700;color:var(--d2)}
+.hero-sub{
+  font-size:clamp(14px,1.5vw,15px);font-weight:300;
+  color:rgba(255,255,255,.65);line-height:1.9;
+  margin-bottom:3rem;max-width:460px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4rem}
+.btn-main{
+  background:var(--d);color:white;font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:600;padding:11px 26px;border-radius:4px;
+  border:none;cursor:pointer;text-decoration:none;display:inline-block;
+  transition:opacity .15s;letter-spacing:.5px;text-transform:uppercase;
+}
+.btn-main:hover{opacity:.88}
+.btn-ghost{
+  background:none;color:rgba(255,255,255,.7);font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:400;padding:11px 26px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.2);cursor:pointer;
+  text-decoration:none;display:inline-block;transition:all .15s;letter-spacing:.3px;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:white}
+.btn-outline{
+  background:none;color:var(--g);font-family:'Montserrat',sans-serif;
+  font-size:11px;font-weight:700;padding:11px 24px;border-radius:2px;
+  border:1.5px solid var(--g);cursor:pointer;text-decoration:none;
+  display:inline-block;transition:all .15s;letter-spacing:1px;
+  text-transform:uppercase;
+}
+.btn-outline:hover{background:rgba(152,34,51,0.05)}
+
+/* Stats minimalistas */
+.hero-nums{display:flex;gap:clamp(1.5rem,4vw,3rem);padding-top:3rem;border-top:1px solid rgba(255,255,255,.1)}
+.hero-num strong{display:block;font-size:28px;font-weight:700;color:var(--d2);line-height:1}
+.hero-num span{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.5px;margin-top:4px;display:block;text-transform:uppercase}
+
+/* SECCIONES */
+.s{padding:clamp(5rem,10vw,8rem) clamp(1.25rem,5vw,3rem)}
+.s.bg{background:var(--crema)}
+.w{max-width:1080px;margin:0 auto}
+
+/* Eyebrow */
+.ey{
+  font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--d);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;
+}
+.ey::before{content:'';width:20px;height:1px;background:var(--d);display:block;flex-shrink:0}
+.ey.lt{color:var(--d2)}.ey.lt::before{background:var(--d2)}
+
+.sh{
+  font-size:clamp(24px,3.5vw,38px);font-weight:300;
+  line-height:1.2;margin-bottom:1rem;letter-spacing:-.3px;
+}
+.sh strong{font-weight:700}
+.ss{font-size:14px;font-weight:300;color:var(--texto2);line-height:1.9;max-width:520px}
+
+/* QUIÉNES — layout 2 col */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,7rem);align-items:start}
+
+/* MV Cards */
+.mv{padding:1.5rem 0;border-bottom:1px solid var(--borde)}
+.mv:first-child{border-top:1px solid var(--borde)}
+.mv-lbl{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--g);margin-bottom:.6rem;
+}
+.mv p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85}
+
+/* Valores */
+.vals{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
+.val{
+  font-size:11px;font-weight:500;color:var(--texto2);
+  padding:5px 14px;border:1px solid var(--borde);border-radius:2px;
+  letter-spacing:.3px;
+}
+
+/* Video lado derecho */
+.vid-wrap{position:relative;padding-bottom:1.5rem}
+.vid{
+  background:var(--g2);border-radius:2px;aspect-ratio:4/3;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.75rem;cursor:pointer;position:relative;overflow:hidden;
+}
+/* Único detalle: línea diagonal dorada sutil */
+.vid::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:3px;background:var(--d);
+}
+.play{
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.play:hover{border-color:var(--d);background:rgba(188,149,91,.15)}
+.play svg{width:18px;height:18px;fill:white;margin-left:3px}
+.vid-lbl{text-align:center}
+.vid-lbl p{font-size:13px;font-weight:400;color:white}
+.vid-lbl small{font-size:10px;color:rgba(255,255,255,.4)}
+/* Nombre comisionado debajo del video */
+.comisionado{
+  margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--borde);
+  display:flex;align-items:center;gap:12px;
+}
+.av{
+  width:40px;height:40px;border-radius:50%;background:var(--g);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--d2);flex-shrink:0;
+}
+.av-txt p{font-size:13px;font-weight:500;color:var(--texto)}
+.av-txt small{font-size:11px;color:var(--texto2)}
+
+/* Cifras */
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-top:2.5rem}
+.cifra{background:white;padding:1.25rem;text-align:center}
+.cifra strong{display:block;font-size:24px;font-weight:700;color:var(--g);line-height:1}
+.cifra span{font-size:10px;color:var(--texto2);margin-top:4px;display:block;letter-spacing:.3px}
+.cifra-bar{width:40px;height:2px;background:var(--d);margin:10px auto 0;border-radius:1px}
+
+/* Badges */
+.badge{
+  font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.5px;text-transform:uppercase;
+}
+.badge-pending{background:rgba(181,138,26,.1);color:#b58a1a;border:1px solid rgba(181,138,26,.2)}
+.badge-active{background:rgba(40,167,69,.1);color:#28a745;border:1px solid rgba(40,167,69,.2)}
+
+/* MARCO LEGAL */
+.netb{
+  background:var(--g);border-radius:2px;padding:clamp(2rem,5vw,3rem);
+  margin-bottom:3rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+}
+.netb-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem}
+.ntag{
+  font-size:10px;font-weight:500;letter-spacing:.5px;
+  color:var(--d2);border:1px solid rgba(221,201,163,.3);
+  padding:4px 12px;border-radius:2px;
+}
+/* Proceso NETB — solo texto, sin emojis */
+.steps{display:flex;flex-direction:column;gap:0}
+.step{
+  display:flex;gap:1.25rem;align-items:flex-start;
+  padding:1rem 0;border-bottom:1px solid rgba(221,201,163,.12);
+}
+.step:last-child{border-bottom:none}
+.step-n{
+  font-size:11px;font-weight:700;color:var(--d);
+  flex-shrink:0;width:24px;padding-top:2px;
+}
+.step-t{font-size:12px;font-weight:500;color:white;margin-bottom:2px}
+.step-d{font-size:11px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.6}
+
+.modelos{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde)}
+.modelo{
+  background:white;padding:1.75rem;
+  transition:background .15s;
+}
+.modelo:hover{background:var(--crema)}
+.mn{
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--d);margin-bottom:.75rem;
+}
+.modelo h4{font-size:14px;font-weight:600;margin-bottom:.4rem;color:var(--texto)}
+.modelo p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75}
+
+/* CTA BAND */
+.cta-band{
+  background:var(--g);padding:clamp(4rem,8vw,6rem) clamp(1.25rem,5vw,3rem);
+  position:relative;
+}
+.cta-band::after{
+  content:'';position:absolute;left:0;bottom:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(188,149,91,.4) 50%,transparent);
+}
+.cta-band h2{
+  font-size:clamp(22px,3vw,34px);font-weight:300;color:white;
+  margin-bottom:.75rem;letter-spacing:-.2px;
+}
+.cta-band h2 strong{font-weight:700}
+.cta-band p{font-size:14px;font-weight:300;color:rgba(255,255,255,.6);margin-bottom:2rem;max-width:480px;line-height:1.85}
+
+/* CONTACTO */
+.c-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(3rem,7vw,6rem);align-items:start}
+.c-left h3{font-size:clamp(20px,2.5vw,28px);font-weight:300;margin-bottom:.6rem;letter-spacing:-.2px}
+.c-left h3 strong{font-weight:700}
+.c-left>p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.9;margin-bottom:2rem}
+.dato{display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--borde);align-items:flex-start}
+.dato:first-of-type{border-top:1px solid var(--borde)}
+.dato-key{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);width:80px;flex-shrink:0;padding-top:1px}
+.dato-val{font-size:13px;font-weight:300;color:var(--texto);line-height:1.6}
+.horario{margin-top:1.5rem;padding:1.25rem;background:var(--crema);border:1px solid var(--borde)}
+.horario p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75}
+.horario strong{font-weight:600;color:var(--texto)}
+
+/* Form */
+.form{background:var(--crema);padding:clamp(1.5rem,3vw,2rem);border:1px solid var(--borde)}
+.form h4{font-size:14px;font-weight:600;margin-bottom:.25rem;color:var(--texto)}
+.form .fsub{font-size:12px;font-weight:300;color:var(--texto2);margin-bottom:1.5rem;line-height:1.65}
+.fg{margin-bottom:.85rem}
+.fg label{
+  display:block;font-size:10px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;color:var(--texto2);margin-bottom:5px;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:9px 11px;
+  border:1px solid var(--borde);border-radius:0;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;
+  background:white;color:var(--texto);outline:none;
+  transition:border-color .15s;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g)}
+.fg.err input,.fg.err select,.fg.err textarea{border-color:#d32f2f}
+.fg.err label{color:#d32f2f}
+.fg.ok input,.fg.ok select,.fg.ok textarea{border-color:#2e7d32}
+.fg.ok label{color:#2e7d32}
+.fg textarea{resize:vertical;min-height:85px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-form{
+  width:100%;background:var(--g);color:white;
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+  padding:13px;border:none;cursor:pointer;margin-top:.5rem;
+  transition:opacity .15s;letter-spacing:1.5px;text-transform:uppercase;
+  border-radius:0;
+}
+.btn-form:hover{opacity:.88}
+.form-legal{font-size:10px;font-weight:300;color:var(--texto2);margin-top:.75rem;text-align:center;line-height:1.6}
+
+/* FOOTER */
+.footer{background:var(--g2);padding:clamp(2.5rem,5vw,4rem) clamp(1.25rem,5vw,3rem) clamp(1.5rem,3vw,2rem)}
+.footer-inner{max-width:1080px;margin:0 auto}
+/* Separador del manual: línea + punto dorado */
+.sep{
+  display:flex;align-items:center;margin-bottom:2.5rem;
+}
+.sep::before,.sep::after{content:'';flex:1;height:1px;background:rgba(188,149,91,.2)}
+.sep-dot{width:6px;height:6px;background:var(--d);border-radius:50%;margin:0 .75rem;flex-shrink:0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-bottom:2.5rem}
+.footer-brand strong{display:block;font-size:13px;font-weight:600;color:var(--d2);margin-bottom:2px}
+.footer-brand small{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1px;text-transform:uppercase}
+.footer-brand p{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.8;margin-top:.75rem;max-width:260px}
+.footer h5{font-size:9px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1rem}
+.footer a{font-size:12px;font-weight:300;color:rgba(255,255,255,.45);text-decoration:none;display:block;line-height:2.2;transition:color .15s;cursor:pointer;background:none;border:none;font-family:'Montserrat',sans-serif;text-align:left}
+.footer a:hover,.footer button:hover{color:var(--d2)}
+.footer button{font-size:12px;font-weight:300;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;display:block;line-height:2.2;transition:color .15s;padding:0;text-align:left}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;
+}
+.footer-bottom p{font-size:10px;font-weight:300;color:rgba(255,255,255,.25)}
+
+/* SUBPÁGINAS */
+.pg-head{
+  background:var(--g);padding:calc(60px + 3.5rem) clamp(1.25rem,5vw,3rem) 3.5rem;
+  position:relative;
+}
+.pg-head::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(188,149,91,.3) 50%,transparent);
+}
+.pg-h-inner{max-width:1080px;margin:0 auto}
+.back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,.45);font-size:11px;font-weight:400;
+  background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;
+  margin-bottom:2rem;padding:0;transition:color .15s;letter-spacing:.5px;
+}
+.back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.back:hover{color:var(--d2)}
+.pg-head h1{font-size:clamp(26px,4vw,40px);font-weight:300;color:white;margin-bottom:.6rem;letter-spacing:-.3px}
+.pg-head h1 strong{font-weight:700}
+.pg-head p{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);max-width:480px;line-height:1.8}
+
+/* PLATAFORMAS */
+.plat-sec{padding:clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem);background:var(--crema)}
+.plat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);max-width:1080px;margin:0 auto;border:1px solid var(--borde)}
+.plat{
+  background:white;padding:clamp(1.5rem,3vw,2.5rem);
+  transition:all .2s;
+  border-top: 3px solid var(--g);
+}
+.plat:nth-child(even){border-top-color:var(--d)}
+.plat:hover{background:#fdfbf8;transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+.plat-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--d);margin-bottom:1rem}
+.plat h3{font-size:18px;font-weight:700;margin-bottom:.5rem;color:var(--texto)}
+.plat p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1.5rem}
+.plat-lnk{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;color:var(--g);text-decoration:none;
+  letter-spacing:.5px;text-transform:uppercase;
+  border-bottom:1px solid rgba(105,27,49,.25);padding-bottom:1px;
+  transition:border-color .15s;
+}
+.plat-lnk:hover{border-color:var(--g)}
+.plat-lnk svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* TRANSPARENCIA */
+.trans-sec{padding:clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)}
+.trans-inner{max-width:1080px;margin:0 auto}
+.trans-notice{
+  background:#fffbf0;border:1px solid #e8c66a;
+  padding:1rem 1.25rem;margin-bottom:2.5rem;
+  display:flex;gap:1rem;align-items:flex-start;
+}
+.trans-notice svg{width:16px;height:16px;stroke:#b58a1a;fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
+.trans-notice-txt h4{font-size:12px;font-weight:600;color:#7a5c10;margin-bottom:2px}
+.trans-notice-txt p{font-size:12px;font-weight:300;color:#8a6c20;line-height:1.6}
+.trans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde)}
+.trans-card{background:white;padding:1.75rem;transition:background .15s}
+.trans-card:hover{background:var(--crema)}
+.trans-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+.trans-pending{font-size:10px;font-weight:600;color:#b58a1a;background:#fef3d0;padding:3px 10px;letter-spacing:.3px}
+.trans-card h4{font-size:13px;font-weight:600;margin-bottom:.3rem;color:var(--texto)}
+.trans-card p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.65}
+/* Art. 69 items */
+.trans-art{display:flex;flex-direction:column;gap:0;margin-bottom:3rem}
+.trans-art-item{
+  display:flex;gap:1.25rem;padding:1.25rem 0;
+  border-bottom:1px solid var(--borde);align-items:flex-start;
+}
+.trans-art-item:first-child{border-top:1px solid var(--borde)}
+.trans-art-n{
+  font-size:11px;font-weight:700;color:var(--g);
+  flex-shrink:0;width:28px;padding-top:2px;
+}
+.trans-art-body h5{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.3rem}
+.trans-art-body p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.trans-art-badge{
+  display:inline-block;margin-top:.6rem;
+  font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--d);background:rgba(188,149,91,.1);padding:3px 10px;border-radius:2px;
+}
+/* Portales externos */
+.trans-portales-title{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--d);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;
+}
+.trans-portales-title::before{content:'';width:20px;height:1px;background:var(--d);display:block}
+.trans-portales{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-top:1.25rem}
+.trans-portal{
+  background:white;padding:1.25rem 1.5rem;
+  display:flex;flex-direction:column;gap:.3rem;
+  transition:background .15s;text-decoration:none;
+}
+.trans-portal:hover{background:var(--crema)}
+.trans-portal-cat{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d)}
+.trans-portal h5{font-size:13px;font-weight:600;color:var(--texto);margin:0}
+.trans-portal p{font-size:11px;font-weight:300;color:var(--texto2);line-height:1.5;margin:0}
+.trans-portal-arrow{
+  margin-top:.5rem;font-size:10px;font-weight:600;color:var(--g);
+  display:flex;align-items:center;gap:5px;
+}
+.trans-portal-arrow svg{width:12px;height:12px;stroke:var(--g);fill:none;stroke-width:2}
+
+/* PLATAFORMAS — PRÓXIMAMENTE */
+.plat-proximamente{
+  background:var(--crema);border-top:1px solid var(--borde);
+  padding:clamp(2rem,4vw,3rem) clamp(1.25rem,5vw,3rem);
+  max-width:none;
+}
+.plat-prox-lbl{
+  font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--d);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;
+  max-width:1080px;margin-left:auto;margin-right:auto;
+}
+.plat-prox-lbl::before{content:'';width:20px;height:1px;background:var(--d);display:block}
+.plat-prox-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--borde);border:1px solid var(--borde);
+  max-width:1080px;margin:0 auto;
+}
+.plat-prox-item{
+  background:#fdfbf8;padding:1.5rem;
+  position:relative;
+}
+.plat-prox-item::after{
+  content:'Próximamente';position:absolute;top:1rem;right:1rem;
+  font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--d);background:rgba(188,149,91,.1);
+  border:1px solid rgba(188,149,91,.25);padding:3px 8px;
+}
+.plat-prox-tag{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--texto2);display:block;margin-bottom:.5rem;
+}
+.plat-prox-item strong{font-size:14px;font-weight:600;color:var(--texto);display:block;margin-bottom:.4rem;opacity:.7}
+.plat-prox-item p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7;opacity:.7}
+
+/* BLOG Y EVENTOS — sección landing */
+.blog-band{
+  padding:clamp(5rem,10vw,8rem) clamp(1.25rem,5vw,3rem);
+  background:var(--g2);position:relative;
+}
+.blog-band::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(188,149,91,.3) 50%,transparent);
+}
+.blog-band::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(188,149,91,.3) 50%,transparent);
+}
+.blog-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;gap:1rem;flex-wrap:wrap}
+.blog-prox{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.03);border:1px solid rgba(188,149,91,.15);
+  padding:3.5rem 2rem;text-align:center;gap:1rem;
+}
+.blog-prox-icon{
+  width:48px;height:48px;border-radius:50%;border:1px solid rgba(188,149,91,.3);
+  display:flex;align-items:center;justify-content:center;margin:0 auto;
+}
+.blog-prox-icon svg{width:20px;height:20px;stroke:var(--d);fill:none;stroke-width:1.5}
+.blog-prox h4{font-size:15px;font-weight:300;color:white;letter-spacing:-.1px}
+.blog-prox h4 strong{font-weight:700;color:var(--d2)}
+.blog-prox p{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;max-width:340px}
+.blog-two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(188,149,91,.12)}
+.blog-col{background:var(--g2);padding:2.5rem}
+.blog-col-title{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--d);margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;
+}
+.blog-col-title::before{content:'';width:16px;height:1px;background:var(--d)}
+.blog-ver-mas{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;color:var(--d);
+  background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;
+  letter-spacing:.5px;text-transform:uppercase;padding:0;
+  border-bottom:1px solid rgba(188,149,91,.3);padding-bottom:1px;
+  transition:border-color .15s;
+}
+.blog-ver-mas:hover{border-color:var(--d)}
+.blog-ver-mas svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* SUBPÁGINA BLOG + EVENTOS */
+.be-tabs{
+  display:flex;gap:0;border-bottom:1px solid var(--borde);
+  max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);
+}
+.be-tab{
+  font-size:12px;font-weight:600;letter-spacing:.3px;color:var(--texto2);
+  background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;
+  padding:1rem 1.5rem 1rem 0;border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:all .15s;
+}
+.be-tab.active{color:var(--g);border-bottom-color:var(--g)}
+.be-tab:hover:not(.active){color:var(--texto)}
+.be-content{display:none;padding:clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)}
+.be-content.active{display:block}
+.be-inner{max-width:1080px;margin:0 auto}
+.be-prox{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:5rem 2rem;text-align:center;gap:1rem;
+  border:1px solid var(--borde);background:var(--crema);
+}
+.be-prox-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--d);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.be-prox h3{font-size:22px;font-weight:300;color:var(--texto);letter-spacing:-.2px}
+.be-prox h3 strong{font-weight:700;color:var(--g)}
+.be-prox p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85;max-width:380px}
+.be-prox small{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--texto2);opacity:.6}
+
+/* SUBPÁGINA GLOSARIO */
+.glosario-sec{padding:clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)}
+.glosario-inner{max-width:1080px;margin:0 auto}
+.glos-search{
+  display:flex;gap:0;border:1px solid var(--borde);margin-bottom:3rem;
+  background:white;
+}
+.glos-search input{
+  flex:1;padding:11px 16px;border:none;outline:none;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;color:var(--texto);
+  background:transparent;
+}
+.glos-search input::placeholder{color:var(--texto2);opacity:.6}
+.glos-search-icon{
+  width:44px;display:flex;align-items:center;justify-content:center;
+  color:var(--texto2);
+}
+.glos-search-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.glos-alpha{
+  display:flex;flex-wrap:wrap;gap:4px;margin-bottom:2.5rem;
+}
+.glos-alpha-btn{
+  font-size:11px;font-weight:600;color:var(--texto2);
+  background:none;border:1px solid var(--borde);
+  padding:4px 10px;cursor:pointer;font-family:'Montserrat',sans-serif;
+  transition:all .15s;border-radius:0;
+}
+.glos-alpha-btn:hover,.glos-alpha-btn.active{background:var(--g);color:white;border-color:var(--g)}
+.glos-alpha-btn:disabled{opacity:.3;cursor:default}
+.glos-grupo{margin-bottom:2.5rem}
+.glos-letra{
+  font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g);
+  border-bottom:1px solid var(--borde);padding-bottom:.5rem;margin-bottom:1rem;
+}
+.glos-item{
+  padding:1rem 0;border-bottom:1px solid var(--borde);
+}
+.glos-item:last-child{border-bottom:none}
+.glos-term{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.25rem}
+.glos-def{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.8}
+.glos-tag{
+  display:inline-block;font-size:9px;font-weight:600;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--d);background:rgba(188,149,91,.1);
+  border:1px solid rgba(188,149,91,.2);padding:2px 8px;margin-top:.4rem;
+}
+/* FAQ dentro de glosario */
+.faq-section{margin-top:4rem;padding-top:3rem;border-top:1px solid var(--borde)}
+.faq-item{border-bottom:1px solid var(--borde)}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 0;cursor:pointer;gap:1rem;
+}
+.faq-q p{font-size:13px;font-weight:500;color:var(--texto);line-height:1.5}
+.faq-q svg{width:16px;height:16px;stroke:var(--texto2);fill:none;stroke-width:2;flex-shrink:0;transition:transform .25s}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{
+  display:none;padding:0 0 1.1rem;
+  font-size:12px;font-weight:300;color:var(--texto2);line-height:1.85;
+}
+.faq-item.open .faq-a{display:block}
+
+/* BLOG — posts y eventos */
+.be-post-featured{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--borde);margin-bottom:2rem;
+}
+.be-post-feat-img{
+  background:var(--g);min-height:260px;
+  display:flex;align-items:flex-end;padding:1.5rem;
+  position:relative;overflow:hidden;
+}
+.be-post-feat-img::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--g2) 0%,var(--g) 60%,rgba(105,27,49,.7) 100%);
+}
+.be-post-feat-img::after{
+  content:'';position:absolute;
+  width:1px;height:100%;right:40%;top:0;
+  background:linear-gradient(to bottom,transparent,rgba(188,149,91,.2) 40%,rgba(188,149,91,.2) 60%,transparent);
+}
+.be-post-feat-body{padding:2rem}
+.be-post-meta{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--texto2);margin-bottom:.75rem}
+.be-post-feat-title{font-size:clamp(16px,2vw,20px);font-weight:700;color:var(--texto);line-height:1.3;margin-bottom:.75rem}
+.be-post-feat-desc{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85;margin-bottom:1.5rem}
+.be-post-cat{
+  position:relative;z-index:1;
+  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--d2);background:rgba(188,149,91,.15);
+  border:1px solid rgba(188,149,91,.3);padding:4px 10px;
+}
+.be-posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde)}
+.be-post{background:white;padding:1.75rem;transition:background .15s}
+.be-post:hover{background:var(--crema)}
+.be-post-cat-sm{
+  font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--d);display:block;margin-bottom:.6rem;
+}
+.be-post-title{font-size:14px;font-weight:600;color:var(--texto);line-height:1.4;margin-bottom:.5rem}
+.be-post-excerpt{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
+.be-post-footer{display:flex;justify-content:space-between;align-items:center}
+.be-post-date{font-size:10px;font-weight:400;color:var(--texto2)}
+.be-post-lnk{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;color:var(--g);
+  border-bottom:1px solid rgba(105,27,49,.2);padding-bottom:1px;
+  text-decoration:none;cursor:pointer;transition:border-color .15s;letter-spacing:.3px;
+}
+.be-post-lnk:hover{border-color:var(--g)}
+.be-post-lnk svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* Eventos */
+.be-eventos-grid{display:flex;flex-direction:column;gap:1px;background:var(--borde);border:1px solid var(--borde)}
+.be-evento{display:grid;grid-template-columns:80px 1fr;gap:0;background:white;transition:background .15s}
+.be-evento:hover{background:var(--crema)}
+.be-evento-featured{border-left:3px solid var(--g)}
+.be-evento-fecha{
+  background:var(--crema);border-right:1px solid var(--borde);
+  padding:1.5rem 1rem;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.be-evento-fecha strong{font-size:28px;font-weight:700;color:var(--g);line-height:1;display:block}
+.be-evento-fecha span{font-size:11px;font-weight:600;color:var(--texto2);text-transform:uppercase;letter-spacing:.5px;display:block;margin-top:2px}
+.be-evento-fecha small{font-size:10px;color:var(--texto2);opacity:.6;display:block;margin-top:1px}
+.be-evento-body{padding:1.5rem 2rem}
+.be-evento-tipo{
+  font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--d);display:block;margin-bottom:.5rem;
+}
+.be-evento h3{font-size:14px;font-weight:600;color:var(--texto);margin-bottom:.5rem;line-height:1.35}
+.be-evento p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:.75rem}
+.be-evento-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;margin-bottom:1rem}
+.be-evento-meta span{font-size:11px;font-weight:400;color:var(--texto2)}
+
+/* Preview en landing */
+.be-post-preview{display:flex;flex-direction:column;gap:0}
+.bpp-item{
+  padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;gap:.25rem;
+}
+.bpp-item:last-child{border-bottom:none}
+.bpp-title{font-size:13px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.45;margin:.2rem 0}
+.bpp-date{font-size:10px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.3px}
+.bpp-evento{flex-direction:row !important;align-items:flex-start;gap:1rem}
+.bpp-fecha{
+  background:rgba(188,149,91,.12);border:1px solid rgba(188,149,91,.2);
+  min-width:44px;padding:.4rem .6rem;text-align:center;flex-shrink:0;
+}
+.bpp-fecha strong{display:block;font-size:18px;font-weight:700;color:var(--d2);line-height:1}
+.bpp-fecha span{display:block;font-size:9px;font-weight:600;color:var(--d);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+
+@media(max-width:768px){
+  .be-post-featured{grid-template-columns:1fr}
+  .be-posts-grid{grid-template-columns:1fr}
+  .be-evento{grid-template-columns:60px 1fr}
+}
+
+/* ANIMACIONES */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:up .65s ease forwards;opacity:0}
+.d1{animation-delay:.08s}.d2{animation-delay:.2s}.d3{animation-delay:.34s}.d4{animation-delay:.48s}.d5{animation-delay:.62s}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .two,.netb,.c-grid{grid-template-columns:1fr}
+  .netb{gap:2rem}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero::after{display:none}
+  .hero-nums{gap:1.5rem}
+  .modelos{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .plat-grid,.trans-grid,.trans-portales{grid-template-columns:1fr}
+  .trans-portal[style*="span 2"]{grid-column:span 1}
+  .fr{grid-template-columns:1fr}
+  .cifras{grid-template-columns:1fr 1fr}
+  .cifras .cifra:last-child{grid-column:1/-1}
+}
+@media(max-width:900px){
+  .plat-prox-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-two{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .plat-grid{grid-template-columns:repeat(2,1fr) !important}
+  .plat-prox-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .plat-grid{grid-template-columns:1fr !important}
+}
+
+
+/* ── SERVIDOR PÚBLICO ── */
+.sp-tabs{
+  display:flex;gap:0;border-bottom:2px solid var(--borde);
+  max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);
+  overflow-x:auto;flex-wrap:nowrap;
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.sp-tabs::-webkit-scrollbar{display:none}
+.sp-tab{
+  font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--texto2);background:none;border:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;padding:1.1rem 1.5rem 1.1rem 0;
+  border-bottom:2px solid transparent;margin-bottom:-2px;
+  transition:all .15s;white-space:nowrap;
+}
+.sp-tab.active{color:var(--g);border-bottom-color:var(--g)}
+.sp-tab:hover:not(.active){color:var(--texto)}
+.sp-pane{display:none;padding:clamp(3rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem)}
+.sp-pane.active{display:block}
+.sp-inner{max-width:1080px;margin:0 auto}
+.cal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:3rem}
+.cal-mes{background:white;padding:1.75rem}
+.cal-mes-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--borde)}
+.cal-mes-name{font-size:13px;font-weight:700;color:var(--g);letter-spacing:.3px}
+.cal-mes-year{font-size:11px;font-weight:400;color:var(--texto2)}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-dow{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--texto2);padding:4px 0;margin-bottom:4px}
+.cal-d{font-size:12px;font-weight:400;color:var(--texto2);padding:5px 4px;border-radius:2px;min-height:28px;display:flex;align-items:center;justify-content:center}
+.cal-d.empty{color:transparent}
+.cal-d.hoy{background:var(--g);color:white;font-weight:700}
+.cal-d.evento{background:rgba(188,149,91,.15);color:var(--texto);font-weight:600;cursor:pointer;border:1px solid rgba(188,149,91,.35);position:relative}
+.cal-d.evento:hover{background:rgba(188,149,91,.3)}
+.cal-d.carga{background:rgba(105,27,49,.1);color:var(--g);font-weight:700;cursor:pointer;border:1px solid rgba(105,27,49,.2)}
+.cal-d.carga:hover{background:rgba(105,27,49,.18)}
+.cal-leyenda{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.cal-ley-item{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:400;color:var(--texto2)}
+.cal-ley-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.cal-eventos-list{border:1px solid var(--borde)}
+.cal-ev-item{display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--borde);background:white;transition:background .15s}
+.cal-ev-item:last-child{border-bottom:none}
+.cal-ev-item:hover{background:var(--crema)}
+.cal-ev-item.urgente{border-left:3px solid var(--g)}
+.cal-ev-fecha{background:var(--crema);border-right:1px solid var(--borde);padding:1.25rem .75rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cal-ev-fecha strong{font-size:22px;font-weight:700;color:var(--g);line-height:1;display:block}
+.cal-ev-fecha span{font-size:10px;font-weight:600;color:var(--texto2);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;display:block}
+.cal-ev-body{padding:1.25rem 1.5rem}
+.cal-ev-tipo{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d);display:block;margin-bottom:.4rem}
+.cal-ev-title{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.3rem;line-height:1.35}
+.cal-ev-desc{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:3rem}
+.cap-card{background:white;padding:1.75rem;position:relative;transition:background .15s}
+.cap-card:hover{background:var(--crema)}
+.cap-cat{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--d);display:block;margin-bottom:.6rem}
+.cap-title{font-size:14px;font-weight:700;color:var(--texto);margin-bottom:.5rem;line-height:1.3}
+.cap-desc{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
+.cap-meta{display:flex;flex-wrap:wrap;gap:.3rem .75rem}
+.cap-meta span{font-size:10px;font-weight:500;color:var(--texto2)}
+.cap-badge{position:absolute;top:1rem;right:1rem;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+.cap-badge-nuevo{background:rgba(40,167,69,.1);color:#28a745;border:1px solid rgba(40,167,69,.25)}
+.cap-badge-proximo{background:rgba(188,149,91,.1);color:#b58a1a;border:1px solid rgba(188,149,91,.25)}
+.cap-badge-disp{background:rgba(105,27,49,.08);color:var(--g);border:1px solid rgba(105,27,49,.15)}
+.cap-btn{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--g);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;padding:0;margin-top:.75rem;border-bottom:1px solid rgba(105,27,49,.2);padding-bottom:2px;transition:border-color .15s}
+.cap-btn:hover{border-color:var(--g)}
+.cap-btn svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5}
+.ruts-banner{background:var(--g);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;margin-bottom:3rem}
+.ruts-banner h3{font-size:clamp(16px,2vw,20px);font-weight:700;color:white;margin-bottom:.4rem}
+.ruts-banner p{font-size:13px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.7}
+.ruts-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d2);background:rgba(221,201,163,.15);border:1px solid rgba(221,201,163,.3);padding:3px 10px;display:inline-block;margin-bottom:.6rem}
+.sol-form{background:var(--crema);border:1px solid var(--borde);padding:2rem 2.5rem;max-width:680px}
+.sol-form h3{font-size:16px;font-weight:700;color:var(--texto);margin-bottom:.4rem}
+.sol-form>.sub{font-size:13px;font-weight:300;color:var(--texto2);margin-bottom:1.75rem;line-height:1.75}
+.rec-banner{background:var(--g2);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.25rem;margin-bottom:2.5rem;border-left:4px solid var(--d)}
+.rec-banner-icon{width:40px;height:40px;border-radius:50%;background:rgba(188,149,91,.2);border:1px solid rgba(188,149,91,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rec-banner-icon svg{width:18px;height:18px;stroke:var(--d);fill:none;stroke-width:1.5}
+.rec-banner p{font-size:13px;font-weight:300;color:rgba(255,255,255,.8);line-height:1.7}
+.rec-banner strong{color:var(--d2)}
+.rec-grid{display:flex;flex-direction:column;gap:1px;background:var(--borde);border:1px solid var(--borde)}
+.rec-item{display:grid;grid-template-columns:56px 1fr auto;gap:0;background:white;transition:background .15s}
+.rec-item:hover{background:var(--crema)}
+.rec-num{background:var(--g);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--d2)}
+.rec-body{padding:1.25rem 1.5rem}
+.rec-body h5{font-size:13px;font-weight:700;color:var(--texto);margin-bottom:.3rem}
+.rec-body p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.rec-badge-wrap{padding:1.25rem 1.5rem;display:flex;align-items:center}
+.rec-fix{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:rgba(105,27,49,.08);color:var(--g);border:1px solid rgba(105,27,49,.15);padding:4px 10px;white-space:nowrap}
+.sp-glos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:2.5rem}
+.sp-glos-item{background:white;padding:1.5rem 1.75rem;transition:background .15s}
+.sp-glos-item:hover{background:var(--crema)}
+.sp-glos-term{font-size:13px;font-weight:700;color:var(--g);margin-bottom:.35rem}
+.sp-glos-def{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.8}
+.sp-glos-tag{display:inline-block;margin-top:.5rem;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--d);background:rgba(188,149,91,.1);border:1px solid rgba(188,149,91,.2);padding:2px 8px}
+.sp-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:2.5rem}
+.sp-contact-card{background:white;padding:2rem;display:flex;flex-direction:column;gap:.75rem}
+.sp-contact-icon{width:44px;height:44px;border-radius:50%;background:rgba(105,27,49,.06);border:1px solid rgba(105,27,49,.12);display:flex;align-items:center;justify-content:center}
+.sp-contact-icon svg{width:18px;height:18px;stroke:var(--g);fill:none;stroke-width:1.5}
+.sp-contact-card h4{font-size:14px;font-weight:700;color:var(--texto);margin:0}
+.sp-contact-card p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7;margin:0}
+.sp-contact-val{font-size:13px;font-weight:500;color:var(--texto)}
+.sp-btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:10px 20px;border:none;cursor:pointer;letter-spacing:.3px;text-decoration:none;border-radius:2px;transition:opacity .15s;align-self:flex-start;margin-top:.25rem}
+.sp-btn-wa:hover{opacity:.88}
+.sp-btn-wa svg{width:16px;height:16px;fill:white}
+.sp-btn-mail{display:inline-flex;align-items:center;gap:8px;background:none;color:var(--g);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:9px 18px;border:1.5px solid var(--g);cursor:pointer;letter-spacing:.3px;border-radius:2px;transition:all .15s;align-self:flex-start;margin-top:.25rem;text-decoration:none}
+.sp-btn-mail:hover{background:rgba(105,27,49,.05)}
+.sp-btn-mail svg{width:15px;height:15px;stroke:var(--g);fill:none;stroke-width:2}
+.reg-intro{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;margin-bottom:3rem}
+.reg-why{list-style:none;padding:0;margin:1.25rem 0 0;display:flex;flex-direction:column;gap:0}
+.reg-why li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--borde);align-items:flex-start;font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.reg-why li:first-child{border-top:1px solid var(--borde)}
+.reg-why-n{font-size:10px;font-weight:700;color:var(--g);flex-shrink:0;width:22px;padding-top:1px}
+@media(max-width:900px){
+  .cal-grid{grid-template-columns:1fr}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .sp-contact-grid,.sp-glos-grid,.reg-intro{grid-template-columns:1fr}
+  .ruts-banner{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .cap-grid{grid-template-columns:1fr}
+  .rec-item{grid-template-columns:44px 1fr auto}
+}
+
+@media(max-width:480px){
+  .plat-grid{grid-template-columns:1fr !important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#" onclick="goHome()">
+    <img src="assets/img/logo.png" alt="Gobierno del Estado de Hidalgo" class="nav-gov">
+    <div class="nav-name">COEMERE <small>Gobierno del Estado de Hidalgo</small></div>
+  </a>
+  <div class="nav-links">
+    <a class="nl" href="#quienes" onclick="goHome()">Quiénes somos</a>
+    <a class="nl" href="#marco" onclick="goHome()">Marco legal</a>
+    <button class="nl pill" onclick="showPage('plataformas')">Plataformas</button>
+    <button class="nl pill" onclick="showPage('transparencia')">Transparencia</button>
+    <button class="nl pill" onclick="showPage('blog')">Blog y eventos</button>
+    <button class="nl pill" onclick="showPage('glosario')">Glosario</button>
+    <button class="nl pill" onclick="showPage('servidor')">Servidor Público</button>
+  </div>
+  <a class="nav-cta" href="#contacto" onclick="goHome()">Vincularse</a>
+  <button class="hamburger" id="hb" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#quienes" onclick="goHome();closeMenu()">Quiénes somos</a>
+  <a href="#marco" onclick="goHome();closeMenu()">Marco legal</a>
+  <button onclick="showPage('plataformas');closeMenu()">Plataformas</button>
+  <button onclick="showPage('transparencia');closeMenu()">Transparencia</button>
+  <button onclick="showPage('blog');closeMenu()">Blog y eventos</button>
+  <button onclick="showPage('glosario');closeMenu()">Glosario ciudadano</button>
+  <button onclick="showPage('servidor');closeMenu()">Servidor Público</button>
+  <a class="mob-cta" href="#contacto" onclick="goHome();closeMenu()">Vincularse →</a>
+</div>
+
+<!-- ====== LANDING ====== -->
+<div class="landing" id="lp">
+
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <p class="hero-eyebrow fu d1">Agencia Digital Estatal · Hidalgo 2022–2028</p>
+    <h1 class="fu d2">La comisión que<br><strong>simplifica el gobierno</strong></h1>
+    <p class="hero-sub fu d3">Acompañamos a las dependencias del Estado de Hidalgo en la modernización de sus trámites y servicios públicos.</p>
+    <div class="hero-actions fu d4">
+      <a class="btn-main" href="#contacto">Vincula tu dependencia</a>
+      <a class="btn-ghost" href="#quienes">Conocer más</a>
+    </div>
+    <div class="hero-nums fu d5">
+      <div class="hero-num"><strong>12+</strong><span>Dependencias</span></div>
+      <div class="hero-num"><strong>4</strong><span>Plataformas</span></div>
+      <div class="hero-num"><strong>NETB</strong><span>Marco legal</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="s" id="quienes">
+  <div class="w">
+    <div class="two">
+      <div class="rv">
+        <p class="ey">La comisión</p>
+        <h2 class="sh">Modernizamos<br><strong>la regulación estatal</strong></h2>
+        <p class="ss" style="margin-bottom:2.5rem">La COEMERE es el organismo del Gobierno del Estado de Hidalgo especializado en simplificar trámites y digitalizar servicios públicos mediante mejora regulatoria y tecnología.</p>
+        <div class="mv">
+          <p class="mv-lbl">Misión</p>
+          <p>Impulsar la mejora regulatoria mediante el diseño de plataformas digitales, la simplificación de trámites y el acompañamiento técnico a las dependencias del Estado de Hidalgo.</p>
+        </div>
+        <div class="mv">
+          <p class="mv-lbl">Visión</p>
+          <p>Ser la agencia digital de referencia en México para la modernización regulatoria estatal, consolidando a Hidalgo como un gobierno eficiente, transparente e innovador.</p>
+        </div>
+        <div class="vals">
+          <span class="val">Innovación</span>
+          <span class="val">Transparencia</span>
+          <span class="val">Eficiencia</span>
+          <span class="val">Colaboración</span>
+        </div>
+      </div>
+      <div class="rv" style="transition-delay:.12s">
+        <div class="vid-wrap">
+          <div class="vid">
+            <div class="play">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <div class="vid-lbl">
+              <p>Mensaje del Comisionado</p>
+              <small>Video institucional COEMERE</small>
+            </div>
+          </div>
+          <div class="comisionado">
+            <div style="background:white;border:1px solid var(--borde);border-radius:2px;padding:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:44px;height:44px">
+              <img src="assets/img/logo.png" alt="Gobierno del Estado de Hidalgo" style="width:32px;height:32px;object-fit:contain;display:block">
+            </div>
+            <div class="av-txt">
+              <p style="font-size:12px;font-weight:700;letter-spacing:.3px;color:var(--g)">MTRO. ANDRÉS MANNING NOVALES.</p>
+              <small>Titular de la COEMERE</small>
+            </div>
+          </div>
+        </div>
+        <div class="cifras">
+          <div class="cifra"><strong>12+</strong><span>Dependencias atendidas</span><div class="cifra-bar"></div></div>
+          <div class="cifra"><strong>4</strong><span>Plataformas activas</span><div class="cifra-bar" style="width:60px"></div></div>
+          <div class="cifra"><strong>2022</strong><span>En operación desde</span><div class="cifra-bar"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCO LEGAL -->
+<section class="s bg" id="marco">
+  <div class="w">
+    <div class="rv" style="margin-bottom:2.5rem">
+      <p class="ey">Normatividad</p>
+      <h2 class="sh">Marco legal<br><strong>que nos respalda</strong></h2>
+      <p class="ss">La COEMERE actúa con base en la <strong>Ley Nacional para Eliminar Trámites Burocráticos (LNETB)</strong> y sus lineamientos de implementación, el único ordenamiento vigente en el estado en materia de simplificación y digitalización de trámites públicos.</p>
+    </div>
+
+    <!-- Bloque guinda: fundamento + modelos -->
+    <div class="netb rv" style="margin-bottom:2.5rem">
+      <div>
+        <p class="ey lt">Fundamento vigente</p>
+        <h3 style="font-size:clamp(18px,2.5vw,26px);font-weight:300;color:white;line-height:1.3;margin-bottom:.75rem">Ley Nacional para Eliminar<br><strong>Trámites Burocráticos</strong></h3>
+        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:1.25rem">Es la ley que obliga a las dependencias del gobierno a hacer sus trámites más sencillos, rápidos y accesibles para las personas. La COEMERE coordina su implementación en el Estado de Hidalgo.</p>
+        <div class="netb-tags">
+          <span class="ntag">Simplificación de trámites</span>
+          <span class="ntag">Digitalización</span>
+          <span class="ntag">Homologación</span>
+          <span class="ntag">Atención ciudadana</span>
+        </div>
+      </div>
+      <div class="steps">
+        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--d2);margin-bottom:1rem">Modelos previstos por la LNETB</p>
+        <div class="step">
+          <span class="step-n">01</span>
+          <div>
+            <p class="step-t">Modelo Nacional para Eliminar Trámites Burocráticos</p>
+            <p class="step-d">Define la estrategia para identificar, simplificar y eliminar pasos innecesarios en los trámites que realizan ciudadanos y empresas ante el gobierno.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <div>
+            <p class="step-t">Modelo Nacional para la Digitalización</p>
+            <p class="step-d">Establece cómo los trámites presenciales deben migrarse a canales digitales, garantizando accesibilidad y seguridad para las personas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <div>
+            <p class="step-t">Modelo Nacional de Homologación y Compartición de Soluciones</p>
+            <p class="step-d">Promueve que las dependencias adopten soluciones tecnológicas comunes, evitando duplicidades y reduciendo costos operativos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-n">04</span>
+          <div>
+            <p class="step-t">Modelo Nacional de Atención Ciudadana</p>
+            <p class="step-d">Fija los estándares de calidad para que los trámites sean claros, predecibles y centrados en las necesidades reales de las personas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas: qué hacemos con ese marco -->
+    <div class="rv" style="margin-bottom:.75rem">
+      <p class="ey">Cómo lo aplicamos</p>
+      <h3 class="sh" style="font-size:clamp(18px,2.5vw,28px)">Lo que hace la COEMERE<br><strong>con este fundamento</strong></h3>
+    </div>
+    <div class="modelos rv">
+      <div class="modelo"><p class="mn">Acción 01</p><h4>Simplificar trámites</h4><p>Revisamos los trámites de las dependencias estatales para reducir requisitos, tiempos y pasos innecesarios, haciendo más fácil la vida de ciudadanos y empresas.</p></div>
+      <div class="modelo"><p class="mn">Acción 02</p><h4>Digitalizar servicios</h4><p>Acompañamos a las dependencias en la migración de sus trámites a plataformas digitales, para que las personas puedan realizarlos sin necesidad de acudir en persona.</p></div>
+      <div class="modelo"><p class="mn">Acción 03</p><h4>Registrar y homologar</h4><p>Incorporamos y mantenemos actualizado el catálogo oficial de trámites del Estado de Hidalgo, asegurando que la información sea clara y consistente en todas las dependencias.</p></div>
+      <div class="modelo"><p class="mn">Acción 04</p><h4>Analizar el impacto regulatorio</h4><p>Evaluamos el efecto real de las regulaciones —nuevas o vigentes— sobre ciudadanos y empresas, antes de que entren en vigor o para identificar áreas de mejora.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG Y EVENTOS -->
+<div class="blog-band" id="blog">
+  <div class="w">
+    <div class="blog-header rv">
+      <div>
+        <p class="ey lt">Comunicación institucional</p>
+        <h2 class="sh" style="color:white;margin-bottom:.25rem">Blog <strong style="color:var(--d2)">y eventos</strong></h2>
+        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7">Noticias, publicaciones y próximas actividades de la COEMERE.</p>
+      </div>
+      <button class="blog-ver-mas" onclick="showPage('blog')">
+        Ver todo <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+    <div class="blog-two rv" style="transition-delay:.1s">
+      <div class="blog-col">
+        <div class="blog-col-title">Blog</div>
+        <div class="be-post-preview">
+          <div class="bpp-item">
+            <span class="be-post-cat-sm">Gobierno digital</span>
+            <p class="bpp-title">RUTS 2.0: cómo el nuevo catálogo de trámites está cambiando la relación entre gobierno y ciudadanos</p>
+            <span class="bpp-date">12 de mayo, 2026</span>
+          </div>
+          <div class="bpp-item">
+            <span class="be-post-cat-sm">Plataformas</span>
+            <p class="bpp-title">Visor Urbano: el territorio de Hidalgo en un mapa interactivo</p>
+            <span class="bpp-date">14 de abril, 2026</span>
+          </div>
+          <div class="bpp-item">
+            <span class="be-post-cat-sm">Inclusión digital</span>
+            <p class="bpp-title">Pueblos Indígenas: servicios gubernamentales en lenguas originarias</p>
+            <span class="bpp-date">2 de abril, 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-col">
+        <div class="blog-col-title">Eventos próximos</div>
+        <div class="be-post-preview">
+          <div class="bpp-item bpp-evento">
+            <div class="bpp-fecha"><strong>19</strong><span>Jun</span></div>
+            <div>
+              <span class="be-post-cat-sm">Taller presencial</span>
+              <p class="bpp-title">Taller de incorporación al RUTS 2.0 para dependencias estatales</p>
+              <span class="bpp-date">Edificio Innovación · 9:00–14:00 hrs</span>
+            </div>
+          </div>
+          <div class="bpp-item bpp-evento">
+            <div class="bpp-fecha"><strong>26</strong><span>Jun</span></div>
+            <div>
+              <span class="be-post-cat-sm">Webinar</span>
+              <p class="bpp-title">Introducción al análisis de impacto regulatorio con SAIR</p>
+              <span class="bpp-date">En línea · 10:00–12:00 hrs</span>
+            </div>
+          </div>
+          <div class="bpp-item bpp-evento">
+            <div class="bpp-fecha"><strong>10</strong><span>Jul</span></div>
+            <div>
+              <span class="be-post-cat-sm">Jornada</span>
+              <p class="bpp-title">Jornada de simplificación regulatoria municipal — Región Pachuca</p>
+              <span class="bpp-date">Pachuca de Soto · Por invitación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="w rv">
+    <h2>¿Tu dependencia necesita<br><strong>simplificar o digitalizar sus trámites?</strong></h2>
+    <p>Cuéntanos qué necesitas. Un especialista de la COEMERE te contactará en menos de 3 días hábiles.</p>
+    <a class="btn-main" href="#contacto">Iniciar vinculación →</a>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section class="s" id="contacto">
+  <div class="w">
+    <div class="c-grid">
+      <div class="c-left rv">
+        <p class="ey">Trabaja con nosotros</p>
+        <h3><strong>Vincula tu dependencia</strong><br>con la COEMERE</h3>
+        <p>Canal oficial para que las dependencias del Gobierno del Estado de Hidalgo inicien un proceso de colaboración.</p>
+        <div class="dato"><span class="dato-key">Dirección</span><span class="dato-val">Edificio Innovación, Ex hacienda de la Concepción 3, 42162 La Concepción, Hgo.</span></div>
+        <div class="dato"><span class="dato-key">Correo</span><span class="dato-val">contacto@coemere.hidalgo.gob.mx</span></div>
+        <div class="dato"><span class="dato-key">Teléfono</span><span class="dato-val">771 717 8300 Ext. [pendiente]</span></div>
+        <div class="horario"><p><strong>Lunes a viernes · 9:00 a 18:00 hrs</strong><br>Días hábiles del Gobierno del Estado de Hidalgo</p></div>
+      </div>
+      <div class="rv" style="transition-delay:.12s">
+        <div class="form">
+          <h4>Formulario de vinculación interinstitucional</h4>
+          <p class="fsub">Completa los datos de tu dependencia. Recibirás respuesta en un máximo de 3 días hábiles.</p>
+          <div class="fr">
+            <div class="fg"><label>Nombre</label><input type="text" placeholder="María González López"></div>
+            <div class="fg"><label>Cargo</label><input type="text" placeholder="Directora de Trámites"></div>
+          </div>
+          <div class="fg"><label>Dependencia</label><input type="text" placeholder="Nombre oficial de la dependencia"></div>
+          <div class="fr">
+            <div class="fg"><label>Correo</label><input type="email" placeholder="nombre@hidalgo.gob.mx"></div>
+            <div class="fg"><label>Teléfono</label><input type="tel" placeholder="771 000 0000"></div>
+          </div>
+          <div class="fg">
+            <label>Tipo de apoyo</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Simplificación de trámites</option>
+              <option>Digitalización de servicios</option>
+              <option>Registro Estatal de Trámites</option>
+              <option>Análisis de impacto regulatorio</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="fg"><label>Descripción</label><textarea placeholder="Describe brevemente el contexto y lo que buscan mejorar..."></textarea></div>
+          <button class="btn-form">Enviar solicitud</button>
+          <p class="form-legal">Al enviar autorizas el uso de tus datos para fines de contacto institucional por la COEMERE.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="sep"><div class="sep-dot"></div></div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="margin-bottom:1.25rem">
+          <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block">
+        </div>
+        <strong>COEMERE</strong>
+        <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+        <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+      </div>
+      <div>
+        <h5>Navegación</h5>
+        <a href="#inicio" onclick="goHome()">Inicio</a>
+        <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+        <a href="#marco" onclick="goHome()">Marco legal</a>
+        <button onclick="showPage('plataformas')">Plataformas</button>
+        <button onclick="showPage('transparencia')">Transparencia</button>
+        <button onclick="showPage('blog')">Blog y eventos</button>
+        <button onclick="showPage('glosario')">Glosario ciudadano</button>
+        <a href="#contacto" onclick="goHome()">Contacto</a>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+        <a href="#">771 717 8300</a>
+        <a href="#">Pachuca de Soto, Hidalgo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Gobierno del Estado de Hidalgo · COEMERE · Todos los derechos reservados</p>
+      <p>MVP 1.0 · En revisión</p>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- ====== SERVIDOR PÚBLICO ====== -->
+<div class="page" id="page-servidor">
+  <div class="pg-head">
+    <div class="pg-h-inner">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al inicio
+      </button>
+      <div style="margin-bottom:1.5rem">
+        <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:160px;height:auto;object-fit:contain;display:block;opacity:.95">
+      </div>
+      <p class="ey lt" style="margin-bottom:.6rem"><span style="width:20px;height:1px;background:var(--d2);display:inline-block;margin-right:10px;vertical-align:middle"></span>Portal interno</p>
+      <h1>Área del <strong>Servidor Público</strong></h1>
+      <p>Información, capacitaciones y recursos operativos para los servidores públicos y enlaces de mejora regulatoria del Estado de Hidalgo.</p>
+    </div>
+  </div>
+
+  <!-- Tabs internos -->
+  <div style="background:white;border-bottom:1px solid var(--borde);position:sticky;top:60px;z-index:100">
+    <div class="sp-tabs">
+      <button class="sp-tab active" onclick="spTab(this,'sp-calendario')">Calendario</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-capacitacion')">Capacitaciones</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-solicitud')">Solicitar capacitación</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-recordatorios')">Recordatorios</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-glosario')">Glosario clave</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-contacto')">Contacto directo</button>
+      <button class="sp-tab" onclick="spTab(this,'sp-registro')">Registro de enlace</button>
+    </div>
+  </div>
+
+  <!-- ── PANE: CALENDARIO ── -->
+  <div class="sp-pane active" id="sp-calendario">
+    <div class="sp-inner">
+      <p class="ey" style="margin-bottom:.5rem">Agenda regulatoria 2026</p>
+      <h2 class="sh" style="margin-bottom:.5rem">Calendario <strong>de fechas clave</strong></h2>
+      <p class="ss" style="margin-bottom:2rem">Consulta los periodos de carga, capacitaciones obligatorias y fechas inamovibles del ciclo regulatorio 2026. Las fechas marcadas en rojo corresponden a los periodos de carga de la Agenda Regulatoria.</p>
+
+      <div class="cal-leyenda">
+        <div class="cal-ley-item"><div class="cal-ley-dot" style="background:rgba(105,27,49,.2);border:1px solid rgba(105,27,49,.35)"></div> Periodo de carga agenda regulatoria</div>
+        <div class="cal-ley-item"><div class="cal-ley-dot" style="background:rgba(188,149,91,.2);border:1px solid rgba(188,149,91,.4)"></div> Capacitación / taller</div>
+        <div class="cal-ley-item"><div class="cal-ley-dot" style="background:var(--g)"></div> Hoy</div>
+      </div>
+
+      <div class="cal-grid">
+        <!-- ENERO 2026 -->
+        <div class="cal-mes">
+          <div class="cal-mes-head"><span class="cal-mes-name">Enero</span><span class="cal-mes-year">2026</span></div>
+          <div class="cal-days">
+            <div class="cal-dow">L</div><div class="cal-dow">M</div><div class="cal-dow">M</div><div class="cal-dow">J</div><div class="cal-dow">V</div><div class="cal-dow">S</div><div class="cal-dow">D</div>
+            <div class="cal-d empty">·</div><div class="cal-d empty">·</div><div class="cal-d empty">·</div><div class="cal-d carga">1</div><div class="cal-d carga">2</div><div class="cal-d">3</div><div class="cal-d">4</div>
+            <div class="cal-d carga">5</div><div class="cal-d carga">6</div><div class="cal-d carga">7</div><div class="cal-d carga">8</div><div class="cal-d carga">9</div><div class="cal-d">10</div><div class="cal-d">11</div>
+            <div class="cal-d carga">12</div><div class="cal-d carga">13</div><div class="cal-d carga">14</div><div class="cal-d carga">15</div><div class="cal-d">16</div><div class="cal-d">17</div><div class="cal-d">18</div>
+            <div class="cal-d evento">19</div><div class="cal-d">20</div><div class="cal-d">21</div><div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d">24</div><div class="cal-d">25</div>
+            <div class="cal-d">26</div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d evento">30</div><div class="cal-d">31</div><div class="cal-d empty">·</div>
+          </div>
+        </div>
+        <!-- JULIO 2026 -->
+        <div class="cal-mes">
+          <div class="cal-mes-head"><span class="cal-mes-name">Julio</span><span class="cal-mes-year">2026</span></div>
+          <div class="cal-days">
+            <div class="cal-dow">L</div><div class="cal-dow">M</div><div class="cal-dow">M</div><div class="cal-dow">J</div><div class="cal-dow">V</div><div class="cal-dow">S</div><div class="cal-dow">D</div>
+            <div class="cal-d empty">·</div><div class="cal-d carga">1</div><div class="cal-d carga">2</div><div class="cal-d carga">3</div><div class="cal-d carga">4</div><div class="cal-d">5</div><div class="cal-d">6</div>
+            <div class="cal-d carga">7</div><div class="cal-d carga">8</div><div class="cal-d carga">9</div><div class="cal-d carga">10</div><div class="cal-d carga">11</div><div class="cal-d">12</div><div class="cal-d">13</div>
+            <div class="cal-d carga">14</div><div class="cal-d carga">15</div><div class="cal-d evento">16</div><div class="cal-d">17</div><div class="cal-d">18</div><div class="cal-d">19</div><div class="cal-d">20</div>
+            <div class="cal-d">21</div><div class="cal-d">22</div><div class="cal-d hoy">23</div><div class="cal-d">24</div><div class="cal-d">25</div><div class="cal-d">26</div><div class="cal-d">27</div>
+            <div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d">30</div><div class="cal-d">31</div><div class="cal-d empty">·</div><div class="cal-d empty">·</div><div class="cal-d empty">·</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="ey" style="margin-bottom:1.5rem">Próximos eventos relevantes</p>
+      <div class="cal-eventos-list">
+        <div class="cal-ev-item urgente">
+          <div class="cal-ev-fecha"><strong>1</strong><span>Jul</span></div>
+          <div class="cal-ev-body">
+            <span class="cal-ev-tipo">Carga obligatoria</span>
+            <p class="cal-ev-title">Inicio del periodo de carga — Agenda Regulatoria 2do semestre</p>
+            <p class="cal-ev-desc">Primeros 15 días hábiles de julio. Todas las dependencias deben tener sus trámites actualizados en el RUTS 2.0 antes del cierre del periodo.</p>
+          </div>
+        </div>
+        <div class="cal-ev-item">
+          <div class="cal-ev-fecha"><strong>16</strong><span>Jul</span></div>
+          <div class="cal-ev-body">
+            <span class="cal-ev-tipo">Taller presencial</span>
+            <p class="cal-ev-title">Taller de lenguaje ciudadano para responsables de trámites</p>
+            <p class="cal-ev-desc">Capacitación para mejorar los nombres y descripciones de trámites en el catálogo. Edificio Innovación, 9:00–13:00 hrs. Cupo limitado.</p>
+          </div>
+        </div>
+        <div class="cal-ev-item">
+          <div class="cal-ev-fecha"><strong>30</strong><span>Ago</span></div>
+          <div class="cal-ev-body">
+            <span class="cal-ev-tipo">Capacitación en línea</span>
+            <p class="cal-ev-title">Módulo 2 — Nuevo RUTS: carga de agenda regulatoria en el sistema actualizado</p>
+            <p class="cal-ev-desc">Webinar obligatorio para todos los enlaces de simplificación. Se enviará liga de acceso por correo electrónico institucional.</p>
+          </div>
+        </div>
+        <div class="cal-ev-item">
+          <div class="cal-ev-fecha"><strong>1</strong><span>Ene</span></div>
+          <div class="cal-ev-body">
+            <span class="cal-ev-tipo">Ratificación anual</span>
+            <p class="cal-ev-title">Ratificación de enlaces de mejora regulatoria — Enero 2027</p>
+            <p class="cal-ev-desc">Cada enero, las dependencias deben confirmar a sus enlaces de simplificación ante la COEMERE. Este aviso es preventivo para planificar con anticipación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANE: CAPACITACIONES ── -->
+  <div class="sp-pane" id="sp-capacitacion">
+    <div class="sp-inner">
+      <div class="ruts-banner">
+        <div>
+          <span class="ruts-tag">Novedad 2026</span>
+          <h3>Nuevo RUTS — Sistema actualizado de agenda regulatoria</h3>
+          <p>La plataforma RUTS ha sido actualizada con una nueva interfaz y flujo de carga. Todos los enlaces de simplificación deben completar la capacitación antes del cierre del periodo de julio 2026.</p>
+        </div>
+        <button class="btn-main" style="white-space:nowrap" onclick="spTab(document.querySelector('.sp-tab:nth-child(3)'),'sp-solicitud')">Solicitar capacitación</button>
+      </div>
+
+      <p class="ey" style="margin-bottom:.5rem">Catálogo 2026</p>
+      <h2 class="sh" style="margin-bottom:1.5rem">Capacitaciones <strong>disponibles</strong></h2>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-nuevo">Nuevo</span>
+          <span class="cap-cat">Plataformas</span>
+          <p class="cap-title">Nuevo RUTS — Módulo 1: Introducción y navegación</p>
+          <p class="cap-desc">Reconocimiento del nuevo entorno de la plataforma RUTS, acceso, perfiles de usuario y vista general del flujo de carga de agenda regulatoria.</p>
+          <div class="cap-meta">
+            <span>&#128197; Disponible ahora</span>
+            <span>&#128337; 2 hrs · En línea</span>
+          </div>
+          <button class="cap-btn">Inscribirme <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-nuevo">Nuevo</span>
+          <span class="cap-cat">Plataformas</span>
+          <p class="cap-title">Nuevo RUTS — Módulo 2: Carga y validación de agenda</p>
+          <p class="cap-desc">Proceso paso a paso para registrar, editar y validar la agenda regulatoria semestral en el sistema actualizado, incluyendo casos de error frecuentes.</p>
+          <div class="cap-meta">
+            <span>&#128197; 30 de agosto, 2026</span>
+            <span>&#128337; 3 hrs · Webinar</span>
+          </div>
+          <button class="cap-btn">Pre-registro <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-disp">Disponible</span>
+          <span class="cap-cat">Comunicación</span>
+          <p class="cap-title">Lenguaje ciudadano para trámites</p>
+          <p class="cap-desc">Principios y técnicas para redactar nombres, descripciones y requisitos de trámites de forma clara, accesible y comprensible para cualquier ciudadano.</p>
+          <div class="cap-meta">
+            <span>&#128197; 16 de julio, 2026</span>
+            <span>&#128337; 4 hrs · Presencial</span>
+          </div>
+          <button class="cap-btn">Inscribirme <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-disp">Disponible</span>
+          <span class="cap-cat">Marco legal</span>
+          <p class="cap-title">Obligaciones del enlace de simplificación</p>
+          <p class="cap-desc">Revisión del rol del enlace, sus responsabilidades ante la COEMERE, los plazos legales que debe atender y los procesos de ratificación anuales.</p>
+          <div class="cap-meta">
+            <span>&#128197; Bajo demanda</span>
+            <span>&#128337; 1.5 hrs · En línea</span>
+          </div>
+          <button class="cap-btn">Inscribirme <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-disp">Disponible</span>
+          <span class="cap-cat">Procesos</span>
+          <p class="cap-title">Cambios de titular: protocolo para nuevos responsables</p>
+          <p class="cap-desc">Guía completa del procedimiento a seguir cuando hay rotación en el cargo del sujeto obligado de una dependencia: notificación, transferencia y actualización en sistema.</p>
+          <div class="cap-meta">
+            <span>&#128197; Bajo demanda</span>
+            <span>&#128337; 1 hr · Autogestivo</span>
+          </div>
+          <button class="cap-btn">Iniciar ahora <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div class="cap-card">
+          <span class="cap-badge cap-badge-proximo">Próximamente</span>
+          <span class="cap-cat">Análisis regulatorio</span>
+          <p class="cap-title">Introducción al SAIR — Análisis de impacto regulatorio</p>
+          <p class="cap-desc">Primeros pasos en el Sistema de Análisis de Impacto Regulatorio: qué es, cuándo se usa y cómo completar un análisis básico para trámites nuevos o modificados.</p>
+          <div class="cap-meta">
+            <span>&#128197; Sep–Oct, 2026</span>
+            <span>&#128337; 2 hrs · Webinar</span>
+          </div>
+          <button class="cap-btn" style="opacity:.5;pointer-events:none">Próximamente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANE: SOLICITUD DE CAPACITACIÓN ── -->
+  <div class="sp-pane" id="sp-solicitud">
+    <div class="sp-inner">
+      <p class="ey" style="margin-bottom:.5rem">¿Necesitas apoyo específico?</p>
+      <h2 class="sh" style="margin-bottom:.5rem">Solicitar <strong>capacitación</strong></h2>
+      <p class="ss" style="margin-bottom:2.5rem">Si eres nuevo en el cargo, hay rotación en tu dependencia, o necesitas capacitación para un tema específico que no está en el catálogo, completa este formulario y el equipo de la COEMERE se comunicará contigo en un máximo de 3 días hábiles.</p>
+      <div class="sol-form">
+        <h3>Formulario de solicitud de capacitación</h3>
+        <p class="sub">Todos los campos son obligatorios.</p>
+        <div class="fr" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="fg"><label>Nombre completo</label><input type="text" placeholder="María González López"></div>
+          <div class="fg"><label>Cargo actual</label><input type="text" placeholder="Enlace de simplificación"></div>
+        </div>
+        <div class="fg"><label>Dependencia</label><input type="text" placeholder="Nombre oficial de tu dependencia"></div>
+        <div class="fr" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="fg"><label>Correo institucional</label><input type="email" placeholder="nombre@hidalgo.gob.mx"></div>
+          <div class="fg"><label>Teléfono de contacto</label><input type="tel" placeholder="771 000 0000"></div>
+        </div>
+        <div class="fg">
+          <label>Tema que necesitas</label>
+          <select>
+            <option value="">Selecciona una opción</option>
+            <option>Nuevo RUTS — Carga de agenda regulatoria</option>
+            <option>Lenguaje ciudadano para trámites</option>
+            <option>Protocolo para cambio de titular</option>
+            <option>Obligaciones del enlace de simplificación</option>
+            <option>Análisis de impacto regulatorio (SAIR)</option>
+            <option>Otro (especificar en el campo de descripción)</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Motivo de la solicitud</label>
+          <select>
+            <option value="">Selecciona una opción</option>
+            <option>Soy nuevo en el cargo (rotación de personal)</option>
+            <option>Necesito actualización sobre cambios recientes</option>
+            <option>Mi equipo no recibió la capacitación anterior</option>
+            <option>Requiero capacitación adicional o de refuerzo</option>
+            <option>Otro motivo</option>
+          </select>
+        </div>
+        <div class="fg"><label>Contexto adicional (opcional)</label><textarea placeholder="Describe brevemente el contexto o lo que necesitas reforzar..." style="resize:vertical"></textarea></div>
+        <button class="btn-form" style="margin-top:.5rem">Enviar solicitud</button>
+        <p class="form-legal" style="margin-top:.75rem">Tu solicitud será atendida en un máximo de 3 días hábiles por el equipo de la COEMERE.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANE: RECORDATORIOS ── -->
+  <div class="sp-pane" id="sp-recordatorios">
+    <div class="sp-inner">
+      <p class="ey" style="margin-bottom:.5rem">Fechas que no cambian</p>
+      <h2 class="sh" style="margin-bottom:.5rem">Recordatorios <strong>inamovibles</strong></h2>
+      <p class="ss" style="margin-bottom:2rem">Estas son las fechas y obligaciones que se repiten cada año en el mismo periodo. Guárdalas en tu agenda y asegúrate de que tu dependencia esté siempre preparada.</p>
+
+      <div class="rec-grid">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-body">
+            <h5>Periodo de carga — Agenda Regulatoria (1er semestre)</h5>
+            <p>Los primeros 15 días hábiles de enero son el periodo oficial para que todas las dependencias actualicen y validen sus trámites en el RUTS 2.0 para el primer semestre del año.</p>
+          </div>
+          <div class="rec-badge-wrap"><span class="rec-fix">Enero · Días 1–15</span></div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-body">
+            <h5>Ratificación de enlaces de mejora regulatoria</h5>
+            <p>Cada enero, las dependencias deben notificar oficialmente a la COEMERE quién es su enlace de simplificación y de mejora regulatoria para el año en curso. Sin ratificación, el enlace queda desactivado.</p>
+          </div>
+          <div class="rec-badge-wrap"><span class="rec-fix">Enero · Anual</span></div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-body">
+            <h5>Periodo de carga — Agenda Regulatoria (2do semestre)</h5>
+            <p>Los primeros 15 días hábiles de julio corresponden al segundo periodo de carga del año. Al igual que en enero, todas las dependencias deben tener su información actualizada antes del cierre.</p>
+          </div>
+          <div class="rec-badge-wrap"><span class="rec-fix">Julio · Días 1–15</span></div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-body">
+            <h5>Actualización del catálogo de trámites en RUTS 2.0</h5>
+            <p>Antes de cada cierre de periodo de carga, el responsable del trámite debe verificar que todos los datos, requisitos, costos y tiempos de respuesta de los trámites de su dependencia estén vigentes y correctos.</p>
+          </div>
+          <div class="rec-badge-wrap"><span class="rec-fix">Ene y Jul</span></div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-body">
+            <h5>Notificación por cambio de titular del sujeto obligado</h5>
+            <p>Cuando el titular de una dependencia cambia de cargo, el nuevo responsable debe notificarlo a la COEMERE en un plazo máximo de 10 días hábiles para actualizar los registros de enlace.</p>
+          </div>
+          <div class="rec-badge-wrap"><span class="rec-fix">Inmediato</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANE: GLOSARIO CLAVE ── -->
+  <div class="sp-pane" id="sp-glosario">
+    <div class="sp-inner">
+      <p class="ey" style="margin-bottom:.5rem">Términos esenciales</p>
+      <h2 class="sh" style="margin-bottom:.5rem">Glosario <strong>para el servidor público</strong></h2>
+      <p class="ss" style="margin-bottom:2rem">Definiciones de los conceptos que más se usan en el ámbito de la mejora regulatoria. Para el glosario completo con todos los términos, visita la sección <button onclick="showPage('glosario')" style="color:var(--g);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;text-decoration:underline;padding:0">Glosario ciudadano</button>.</p>
+      <div class="sp-glos-grid">
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Sujeto obligado</p>
+          <p class="sp-glos-def">Toda dependencia, entidad u organismo del Gobierno del Estado de Hidalgo que por ley debe cumplir con las obligaciones de simplificación y registro de trámites ante la COEMERE, y que tiene asignado un enlace de mejora regulatoria.</p>
+          <span class="sp-glos-tag">Marco legal</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Enlace de simplificación</p>
+          <p class="sp-glos-def">Servidor público designado formalmente por cada dependencia para ser el vínculo operativo con la COEMERE. Es responsable de actualizar la agenda regulatoria, asistir a capacitaciones y coordinar la mejora de trámites dentro de su institución.</p>
+          <span class="sp-glos-tag">Roles</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Agenda regulatoria</p>
+          <p class="sp-glos-def">Plan de trabajo semestral que cada dependencia registra en el sistema, comprometiéndose a simplificar o mejorar trámites y servicios específicos durante ese periodo. Se carga dos veces al año: enero y julio.</p>
+          <span class="sp-glos-tag">Mejora regulatoria</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">RUTS 2.0</p>
+          <p class="sp-glos-def">Registro Único de Trámites y Servicios del Estado de Hidalgo. Catálogo oficial donde todas las dependencias deben mantener actualizados sus trámites y servicios: requisitos, costos, tiempos, fundamento legal y modalidad de atención.</p>
+          <span class="sp-glos-tag">Plataformas</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Enlace de mejora regulatoria</p>
+          <p class="sp-glos-def">Perfil complementario al enlace de simplificación, con funciones más amplias que incluyen participar en la revisión de normativa, coordinar con áreas jurídicas y reportar avances ante la COEMERE en materia de mejora del marco legal de su dependencia.</p>
+          <span class="sp-glos-tag">Roles</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Periodo de carga</p>
+          <p class="sp-glos-def">Ventana de tiempo oficial (primeros 15 días hábiles de enero y julio) durante la cual las dependencias deben ingresar, actualizar y validar su agenda regulatoria en el sistema. Fuera de este periodo, los cambios requieren autorización especial.</p>
+          <span class="sp-glos-tag">Procesos</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Dueño del trámite</p>
+          <p class="sp-glos-def">Servidor público operativo dentro de cada dependencia que tiene la responsabilidad directa de un trámite específico: es quien conoce los requisitos, tiempos y fundamento legal, y quien debe mantener actualizada la información en el RUTS 2.0.</p>
+          <span class="sp-glos-tag">Roles</span>
+        </div>
+        <div class="sp-glos-item">
+          <p class="sp-glos-term">Lenguaje ciudadano</p>
+          <p class="sp-glos-def">Criterio de redacción que exige que los nombres y descripciones de los trámites estén escritos de forma clara, sencilla y comprensible para cualquier persona, evitando tecnicismos innecesarios o lenguaje burocrático que dificulte entender qué se necesita y para qué sirve el trámite.</p>
+          <span class="sp-glos-tag">Comunicación</span>
+        </div>
+      </div>
+      <p style="font-size:12px;font-weight:300;color:var(--texto2);text-align:center;padding:1rem 0;border-top:1px solid var(--borde)">
+        ¿Buscas otro término? <button onclick="showPage('glosario')" style="color:var(--g);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;padding:0;text-decoration:underline">Ver glosario completo →</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PANE: CONTACTO DIRECTO ── -->
+  <div class="sp-pane" id="sp-contacto">
+    <div class="sp-inner">
+      <p class="ey" style="margin-bottom:.5rem">¿Necesitas atención personalizada?</p>
+      <h2 class="sh" style="margin-bottom:.5rem">Contacto <strong>directo</strong></h2>
+      <p class="ss" style="margin-bottom:2.5rem">Para dudas que no puedas resolver en este portal, puedes comunicarte directamente con el equipo de la COEMERE por cualquiera de estos canales. Te atenderemos en un máximo de 1 día hábil.</p>
+      <div class="sp-contact-grid">
+        <div class="sp-contact-card">
+          <div class="sp-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>WhatsApp institucional</h4>
+          <p>Canal directo para consultas rápidas sobre trámites, fechas y procesos. Horario de atención: lunes a viernes, 9:00–18:00 hrs.</p>
+          <span class="sp-contact-val">771 100 0000</span>
+          <a class="sp-btn-wa" href="https://wa.me/527711000000?text=Hola%2C%20soy%20servidor%20público%20y%20tengo%20una%20duda%20sobre%20el%20proceso%20de%20agenda%20regulatoria." target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+        <div class="sp-contact-card">
+          <div class="sp-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4>Correo electrónico</h4>
+          <p>Para solicitudes formales, envío de documentos o dudas que requieran seguimiento por escrito. Respuesta en máximo 1 día hábil.</p>
+          <span class="sp-contact-val">capacitacion@coemere.hidalgo.gob.mx</span>
+          <a class="sp-btn-mail" href="mailto:capacitacion@coemere.hidalgo.gob.mx?subject=Consulta%20servidor%20público%20COEMERE">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Enviar correo
+          </a>
+        </div>
+      </div>
+      <div class="horario" style="max-width:680px">
+        <p><strong>Horario de atención</strong><br>Lunes a viernes · 9:00 a 18:00 hrs · Días hábiles del Gobierno del Estado de Hidalgo</p>
+      </div>
+      <p style="font-size:12px;font-weight:300;color:var(--texto2);margin-top:1.5rem;line-height:1.7;max-width:560px">
+        ¿Tu consulta puede esperar hasta el siguiente día hábil? Primero revisa el <strong>Glosario clave</strong> y los <strong>Recordatorios</strong> de esta sección; es posible que encuentres la respuesta sin necesidad de contactar al equipo.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PANE: REGISTRO ── -->
+  <div class="sp-pane" id="sp-registro">
+    <div class="sp-inner">
+      <div class="reg-intro">
+        <div>
+          <p class="ey" style="margin-bottom:.5rem">Vinculación oficial</p>
+          <h2 class="sh" style="margin-bottom:.5rem">Registro de <strong>enlace</strong></h2>
+          <p style="font-size:14px;font-weight:300;color:var(--texto2);line-height:1.9;margin-bottom:1rem">Completa este formulario para registrarte como enlace de simplificación o de mejora regulatoria ante la COEMERE. Este registro es obligatorio para participar en las capacitaciones y cumplir con las obligaciones regulatorias de tu dependencia.</p>
+          <ul class="reg-why">
+            <li><span class="reg-why-n">01</span> Recibirás notificaciones automáticas de fechas clave y recordatorios de los periodos de carga.</li>
+            <li><span class="reg-why-n">02</span> Podrás inscribirte directamente a las capacitaciones disponibles desde tu perfil.</li>
+            <li><span class="reg-why-n">03</span> COEMERE tendrá tus datos actualizados para cualquier comunicación oficial.</li>
+            <li><span class="reg-why-n">04</span> Cumplirás con el requisito de ratificación anual de enero de forma ágil y sin trámites adicionales.</li>
+          </ul>
+        </div>
+        <div class="form">
+          <h4>Formulario de registro de enlace</h4>
+          <p class="fsub">Información del servidor público que se registra como enlace ante la COEMERE.</p>
+          <div class="fr" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="fg"><label>Nombre(s)</label><input type="text" placeholder="María"></div>
+            <div class="fg"><label>Apellidos</label><input type="text" placeholder="González López"></div>
+          </div>
+          <div class="fg"><label>Cargo oficial</label><input type="text" placeholder="Directora de Trámites y Servicios"></div>
+          <div class="fg"><label>Dependencia</label><input type="text" placeholder="Nombre oficial de la dependencia"></div>
+          <div class="fr" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="fg"><label>Correo institucional</label><input type="email" placeholder="nombre@hidalgo.gob.mx"></div>
+            <div class="fg"><label>Teléfono</label><input type="tel" placeholder="771 000 0000"></div>
+          </div>
+          <div class="fg">
+            <label>Tipo de enlace</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Enlace de simplificación</option>
+              <option>Enlace de mejora regulatoria</option>
+              <option>Ambos roles</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Deseo recibir notificaciones por correo</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Sí — recordatorios de fechas clave y capacitaciones</option>
+              <option>No por ahora</option>
+            </select>
+          </div>
+          <button class="btn-form">Registrarme como enlace</button>
+          <p class="form-legal">Al registrarte, autorizas a la COEMERE el uso de tus datos para fines de comunicación institucional y seguimiento del proceso de mejora regulatoria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="sep"><div class="sep-dot"></div></div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:1.25rem"><img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block"></div>
+          <strong>COEMERE</strong>
+          <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+          <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+        </div>
+        <div>
+          <h5>Navegación</h5>
+          <a href="#inicio" onclick="goHome()">Inicio</a>
+          <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+          <a href="#marco" onclick="goHome()">Marco legal</a>
+          <button onclick="showPage('plataformas')">Plataformas</button>
+          <button onclick="showPage('transparencia')">Transparencia</button>
+          <button onclick="showPage('blog')">Blog y eventos</button>
+          <button onclick="showPage('glosario')">Glosario ciudadano</button>
+          <button onclick="showPage('servidor')">Servidor Público</button>
+          <a href="#contacto" onclick="goHome()">Contacto</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+          <a href="#">771 717 8300</a>
+          <a href="#">Pachuca de Soto, Hidalgo</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&#169; 2026 Gobierno del Estado de Hidalgo &middot; COEMERE &middot; Todos los derechos reservados</p>
+        <p>MVP 1.0 &middot; En revisi&#243;n</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ====== PLATAFORMAS ====== -->
+<div class="page" id="page-plataformas">
+  <div class="pg-head">
+    <div class="pg-h-inner">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al inicio
+      </button>
+      <div style="margin-bottom:1.5rem">
+        <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:160px;height:auto;object-fit:contain;display:block;opacity:.95">
+      </div>
+      <p class="ey lt" style="margin-bottom:.6rem"><span style="width:20px;height:1px;background:var(--d2);display:inline-block;margin-right:10px;vertical-align:middle"></span>Herramientas digitales</p>
+      <h1><strong>Plataformas</strong> de la COEMERE</h1>
+      <p>Soluciones tecnológicas para apoyar la gestión regulatoria de las dependencias del Estado de Hidalgo.</p>
+    </div>
+  </div>
+  <div class="plat-sec">
+    <div class="plat-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="plat"><p class="plat-cat">Trámites</p><h3>RUTS 2.0</h3><p>Registro Único de Trámites y Servicios del Estado de Hidalgo. Catálogo oficial donde las dependencias registran, actualizan y consultan sus trámites en un solo lugar.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+      <div class="plat"><p class="plat-cat">Atención ciudadana</p><h3>Migrantes Hidalguenses</h3><p>Plataforma de servicios y seguimiento para la comunidad migrante hidalguense en el exterior. Trámites, apoyos y comunicación directa con el gobierno estatal.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+      <div class="plat"><p class="plat-cat">Inclusión</p><h3>Pueblos Indígenas</h3><p>Portal digital de servicios e información para las comunidades indígenas del estado. Información en lenguas originarias y acceso simplificado a trámites y programas.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+      <div class="plat"><p class="plat-cat">Territorio</p><h3>Visor Urbano</h3><p>Herramienta de visualización geoespacial del territorio hidalguense. Consulta de usos de suelo, zonificación, infraestructura y datos urbanos en un mapa interactivo.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+      <div class="plat"><p class="plat-cat">Regulación</p><h3>Normateca</h3><p>Repositorio centralizado del marco normativo del Estado de Hidalgo. Leyes, reglamentos, acuerdos y disposiciones administrativas vigentes, organizados y de fácil consulta.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+      <div class="plat"><p class="plat-cat">Análisis regulatorio</p><h3>SAIR</h3><p>Sistema de Análisis de Impacto Regulatorio. Evalúa el efecto de regulaciones nuevas o vigentes sobre ciudadanos, empresas y la administración pública estatal.</p><a class="plat-lnk" href="#">Acceder <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+    </div>
+    <div class="plat-proximamente">
+      <p class="plat-prox-lbl">Próximamente</p>
+      <div class="plat-prox-grid">
+        <div class="plat-prox-item"><span class="plat-prox-tag">Fintech</span><strong>Wallet</strong><p>Billetera digital para pagos y gestión de servicios gubernamentales.</p></div>
+        <div class="plat-prox-item"><span class="plat-prox-tag">Pagos</span><strong>Motor transaccional de pagos</strong><p>Infraestructura centralizada para el procesamiento de pagos del gobierno estatal.</p></div>
+        <div class="plat-prox-item"><span class="plat-prox-tag">Gestión</span><strong>GPM</strong><p>Plataforma de gestión y seguimiento de proyectos de mejora regulatoria.</p></div>
+        <div class="plat-prox-item"><span class="plat-prox-tag">Transparencia</span><strong>Datos Abiertos</strong><p>Portal de conjuntos de datos públicos del Gobierno del Estado de Hidalgo.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="sep"><div class="sep-dot"></div></div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:1.25rem"><img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block"></div>
+          <strong>COEMERE</strong>
+          <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+          <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+        </div>
+        <div>
+          <h5>Navegación</h5>
+          <a href="#inicio" onclick="goHome()">Inicio</a>
+          <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+          <a href="#marco" onclick="goHome()">Marco legal</a>
+          <button onclick="showPage('plataformas')">Plataformas</button>
+          <button onclick="showPage('transparencia')">Transparencia</button>
+          <button onclick="showPage('blog')">Blog y eventos</button>
+          <button onclick="showPage('glosario')">Glosario ciudadano</button>
+          <a href="#contacto" onclick="goHome()">Contacto</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+          <a href="#">771 717 8300</a>
+          <a href="#">Pachuca de Soto, Hidalgo</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Gobierno del Estado de Hidalgo · COEMERE · Todos los derechos reservados</p>
+        <p>MVP 1.0 · En revisión</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ====== TRANSPARENCIA ====== -->
+<div class="page" id="page-transparencia">
+  <div class="pg-head">
+    <div class="pg-h-inner">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al inicio
+      </button>
+      <div style="margin-bottom:1.5rem">
+        <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:160px;height:auto;object-fit:contain;display:block;opacity:.95">
+      </div>
+      <p class="ey lt" style="margin-bottom:.6rem"><span style="width:20px;height:1px;background:var(--d2);display:inline-block;margin-right:10px;vertical-align:middle"></span>Información pública</p>
+      <h1><strong>Transparencia</strong></h1>
+      <p>Acceso a la documentación oficial, agenda y obligaciones de transparencia de la COEMERE.</p>
+    </div>
+  </div>
+  <div class="trans-sec">
+    <div class="trans-inner">
+
+      <!-- Intro art. 69 -->
+      <div style="margin-bottom:2.5rem">
+        <p class="ey">Obligaciones de transparencia</p>
+        <h2 class="sh" style="font-size:clamp(20px,3vw,32px)">Lo que la ley nos obliga<br><strong>a publicar</strong></h2>
+        <p class="ss">Conforme al <strong>artículo 69 de la Ley de Transparencia y Acceso a la Información Pública para el Estado de Hidalgo</strong>, la COEMERE debe poner a disposición del público y mantener actualizada la siguiente información mínima.</p>
+      </div>
+
+      <!-- Ítems del artículo 69 -->
+      <div class="trans-art">
+
+        <div class="trans-art-item">
+          <span class="trans-art-n">I</span>
+          <div class="trans-art-body">
+            <h5>Marco normativo aplicable</h5>
+            <p>Las leyes, reglamentos, decretos, manuales administrativos, reglas de operación, criterios y políticas que rigen el funcionamiento de la COEMERE. Es el conjunto de reglas bajo las cuales operamos y que cualquier persona puede consultar.</p>
+            <span class="trans-art-badge">Contenido por publicar</span>
+          </div>
+        </div>
+
+        <div class="trans-art-item">
+          <span class="trans-art-n">II</span>
+          <div class="trans-art-body">
+            <h5>Estructura orgánica completa</h5>
+            <p>El organigrama de la COEMERE en un formato que permita saber qué hace cada área, qué responsabilidades tiene cada servidor público y cómo se vinculan entre sí las distintas partes de la institución.</p>
+            <span class="trans-art-badge">Contenido por publicar</span>
+          </div>
+        </div>
+
+        <div class="trans-art-item">
+          <span class="trans-art-n">III</span>
+          <div class="trans-art-body">
+            <h5>Facultades y atribuciones de cada área</h5>
+            <p>Qué puede hacer y qué le corresponde a cada área de la COEMERE según la ley: sus funciones, sus alcances y sus límites. Esto permite a la ciudadanía saber exactamente a quién dirigirse y para qué.</p>
+            <span class="trans-art-badge">Contenido por publicar</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Nota legal -->
+      <div class="trans-notice" style="margin-bottom:3rem">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="trans-notice-txt">
+          <h4>Información en proceso de integración</h4>
+          <p>El equipo jurídico de la COEMERE está integrando los documentos correspondientes a cada obligación. Una vez validados, estarán disponibles en esta sección para su consulta pública. Para dudas o solicitudes de información, puedes usar el canal de <strong>Acceso a la Información</strong> en los portales indicados abajo.</p>
+        </div>
+      </div>
+
+      <!-- Portales institucionales de transparencia -->
+      <p class="trans-portales-title">Portales oficiales de transparencia</p>
+      <p style="font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:0">Mientras se completa esta sección, puedes acceder a las plataformas institucionales del Gobierno del Estado de Hidalgo para consultar información pública, ejercer tu derecho de acceso a la información y revisar el estado financiero del gobierno.</p>
+      <div class="trans-portales">
+        <a class="trans-portal" href="https://www.plataformadetransparencia.org.mx/" target="_blank" rel="noopener">
+          <span class="trans-portal-cat">Nacional</span>
+          <h5>Plataforma Nacional de Transparencia</h5>
+          <p>Portal federal donde puedes enviar solicitudes de información a cualquier dependencia del país.</p>
+          <span class="trans-portal-arrow">Ir al portal <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+        <a class="trans-portal" href="https://hacienda.hidalgo.gob.mx/TransparenciaSecretaria" target="_blank" rel="noopener">
+          <span class="trans-portal-cat">Estatal</span>
+          <h5>Transparencia financiera</h5>
+          <p>Información sobre el presupuesto, ejercicio del gasto y cuentas públicas del Gobierno del Estado de Hidalgo.</p>
+          <span class="trans-portal-arrow">Ir al portal <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+        <a class="trans-portal" href="https://transparencia.hidalgo.gob.mx/pag/acc_imfo.html" target="_blank" rel="noopener">
+          <span class="trans-portal-cat">Derecho ciudadano</span>
+          <h5>Acceso a la información</h5>
+          <p>Aquí puedes presentar una solicitud formal para pedir información pública a las dependencias del estado.</p>
+          <span class="trans-portal-arrow">Ir al portal <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+        <a class="trans-portal" href="https://transparencia.hidalgo.gob.mx/pag/part_ciudadana.html" target="_blank" rel="noopener">
+          <span class="trans-portal-cat">Democracia</span>
+          <h5>Participación ciudadana</h5>
+          <p>Espacios y mecanismos para que los ciudadanos opinen, propongan y colaboren con el gobierno estatal.</p>
+          <span class="trans-portal-arrow">Ir al portal <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+        <a class="trans-portal" href="https://transparencia.hidalgo.gob.mx/" target="_blank" rel="noopener" style="grid-column:span 2">
+          <span class="trans-portal-cat">Estatal</span>
+          <h5>Portal de transparencia Hidalgo</h5>
+          <p>Portal principal de transparencia del Gobierno del Estado de Hidalgo. Consulta información de todas las dependencias en un solo lugar.</p>
+          <span class="trans-portal-arrow">Ir al portal <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="sep"><div class="sep-dot"></div></div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:1.25rem"><img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block"></div>
+          <strong>COEMERE</strong>
+          <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+          <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+        </div>
+        <div>
+          <h5>Navegación</h5>
+          <a href="#inicio" onclick="goHome()">Inicio</a>
+          <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+          <a href="#marco" onclick="goHome()">Marco legal</a>
+          <button onclick="showPage('plataformas')">Plataformas</button>
+          <button onclick="showPage('transparencia')">Transparencia</button>
+          <button onclick="showPage('blog')">Blog y eventos</button>
+          <button onclick="showPage('glosario')">Glosario ciudadano</button>
+          <a href="#contacto" onclick="goHome()">Contacto</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+          <a href="#">771 717 8300</a>
+          <a href="#">Pachuca de Soto, Hidalgo</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Gobierno del Estado de Hidalgo · COEMERE · Todos los derechos reservados</p>
+        <p>MVP 1.0 · En revisión</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ====== BLOG Y EVENTOS ====== -->
+<div class="page" id="page-blog">
+  <div class="pg-head">
+    <div class="pg-h-inner">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al inicio
+      </button>
+      <div style="margin-bottom:1.5rem">
+        <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:160px;height:auto;object-fit:contain;display:block;opacity:.95">
+      </div>
+      <p class="ey lt" style="margin-bottom:.6rem"><span style="width:20px;height:1px;background:var(--d2);display:inline-block;margin-right:10px;vertical-align:middle"></span>Comunicación institucional</p>
+      <h1><strong>Blog y eventos</strong></h1>
+      <p>Noticias, análisis y próximas actividades de la Comisión Estatal de Mejora Regulatoria.</p>
+    </div>
+  </div>
+  <div style="padding:0 clamp(1.25rem,5vw,3rem);background:white;border-bottom:1px solid var(--borde)">
+    <div class="be-tabs">
+      <button class="be-tab active" onclick="switchTab(this,'tab-blog')">Blog</button>
+      <button class="be-tab" onclick="switchTab(this,'tab-eventos')">Eventos próximos</button>
+    </div>
+  </div>
+  <div class="be-content active" id="tab-blog">
+    <div class="be-inner">
+      <!-- Post destacado -->
+      <div class="be-post-featured rv">
+        <div class="be-post-feat-img">
+          <span class="be-post-cat">Gobierno digital</span>
+        </div>
+        <div class="be-post-feat-body">
+          <p class="be-post-meta">12 de mayo, 2026 · Por equipo COEMERE</p>
+          <h2 class="be-post-feat-title">RUTS 2.0: cómo el nuevo catálogo de trámites está cambiando la relación entre gobierno y ciudadanos</h2>
+          <p class="be-post-feat-desc">La segunda versión del Registro Único de Trámites y Servicios de Hidalgo incorpora mejoras de usabilidad, tiempos de respuesta en tiempo real y vinculación directa con el Portal Ciudadano. Más de 12 dependencias ya operan en la nueva plataforma.</p>
+          <a class="be-post-lnk" href="#">Leer artículo <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Grid de posts -->
+      <div class="be-posts-grid">
+        <div class="be-post rv">
+          <span class="be-post-cat-sm">Mejora regulatoria</span>
+          <h3 class="be-post-title">Cómo simplificamos el trámite de licencias de construcción en 60% menos pasos</h3>
+          <p class="be-post-excerpt">El rediseño del proceso junto con la Secretaría de Obras Públicas redujo de 14 a 5 los requisitos obligatorios y eliminó tres visitas presenciales.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">28 de abril, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <div class="be-post rv" style="transition-delay:.08s">
+          <span class="be-post-cat-sm">Plataformas</span>
+          <h3 class="be-post-title">Visor Urbano: la herramienta que pone el territorio de Hidalgo en un mapa interactivo</h3>
+          <p class="be-post-excerpt">Zonificación, usos de suelo e infraestructura pública en una sola plataforma. Así nació el Visor Urbano y así lo están usando las dependencias estatales.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">14 de abril, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <div class="be-post rv" style="transition-delay:.16s">
+          <span class="be-post-cat-sm">Inclusión digital</span>
+          <h3 class="be-post-title">Pueblos Indígenas: servicios gubernamentales en lenguas originarias de Hidalgo</h3>
+          <p class="be-post-excerpt">La plataforma ya opera en hñähñu, náhuatl y tepehua, acercando trámites y programas a comunidades que históricamente enfrentaron barreras de acceso.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">2 de abril, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <div class="be-post rv">
+          <span class="be-post-cat-sm">Normatividad</span>
+          <h3 class="be-post-title">Normateca Hidalgo: el repositorio que centraliza más de 400 disposiciones normativas del estado</h3>
+          <p class="be-post-excerpt">Leyes, reglamentos y acuerdos administrativos ahora disponibles en un solo lugar, organizados por dependencia, tema y fecha de publicación.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">18 de marzo, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <div class="be-post rv" style="transition-delay:.08s">
+          <span class="be-post-cat-sm">Migrantes</span>
+          <h3 class="be-post-title">Migrantes Hidalguenses: conectando a la diáspora con los servicios del gobierno estatal</h3>
+          <p class="be-post-excerpt">Más de 3,200 hidalguenses radicados en Estados Unidos ya han utilizado la plataforma para consultar apoyos, enviar documentos y seguir trámites a distancia.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">5 de marzo, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <div class="be-post rv" style="transition-delay:.16s">
+          <span class="be-post-cat-sm">Análisis</span>
+          <h3 class="be-post-title">SAIR: midiendo el impacto real de las regulaciones antes de que entren en vigor</h3>
+          <p class="be-post-excerpt">El Sistema de Análisis de Impacto Regulatorio permite prever costos, identificar duplicidades y proponer alternativas más eficientes antes de publicar una norma.</p>
+          <div class="be-post-footer">
+            <span class="be-post-date">17 de febrero, 2026</span>
+            <a class="be-post-lnk" href="#">Leer <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="be-content" id="tab-eventos">
+    <div class="be-inner">
+      <div class="be-eventos-grid">
+
+        <!-- Evento próximo destacado -->
+        <div class="be-evento be-evento-featured rv">
+          <div class="be-evento-fecha">
+            <strong>19</strong>
+            <span>Jun</span>
+            <small>2026</small>
+          </div>
+          <div class="be-evento-body">
+            <span class="be-evento-tipo">Taller presencial</span>
+            <h3>Taller de incorporación al RUTS 2.0 para dependencias estatales</h3>
+            <p>Sesión práctica dirigida a los enlaces de mejora regulatoria de las secretarías del Gobierno del Estado. Se abordarán los flujos de registro, actualización de trámites y vinculación con el Portal Ciudadano.</p>
+            <div class="be-evento-meta">
+              <span>📍 Edificio Innovación, La Concepción, Hgo.</span>
+              <span>🕘 9:00 – 14:00 hrs</span>
+              <span>👥 Cupo limitado: 30 personas</span>
+            </div>
+            <a class="be-post-lnk" href="#">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+
+        <div class="be-evento rv" style="transition-delay:.08s">
+          <div class="be-evento-fecha">
+            <strong>26</strong>
+            <span>Jun</span>
+            <small>2026</small>
+          </div>
+          <div class="be-evento-body">
+            <span class="be-evento-tipo">Webinar</span>
+            <h3>Introducción al análisis de impacto regulatorio con SAIR</h3>
+            <p>Sesión en línea para funcionarios que necesiten elaborar análisis de impacto regulatorio por primera vez. Incluye demostración práctica de la plataforma.</p>
+            <div class="be-evento-meta">
+              <span>💻 En línea vía Zoom</span>
+              <span>🕘 10:00 – 12:00 hrs</span>
+            </div>
+            <a class="be-post-lnk" href="#">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+
+        <div class="be-evento rv" style="transition-delay:.16s">
+          <div class="be-evento-fecha">
+            <strong>10</strong>
+            <span>Jul</span>
+            <small>2026</small>
+          </div>
+          <div class="be-evento-body">
+            <span class="be-evento-tipo">Jornada de vinculación</span>
+            <h3>Jornada de simplificación regulatoria municipal — Región Pachuca</h3>
+            <p>Espacio de trabajo colaborativo entre la COEMERE y los equipos de mejora regulatoria de los municipios de la región Pachuca para avanzar en la digitalización de trámites locales.</p>
+            <div class="be-evento-meta">
+              <span>📍 Pachuca de Soto, Hgo.</span>
+              <span>🕘 8:30 – 17:00 hrs</span>
+              <span>👥 Por invitación</span>
+            </div>
+            <a class="be-post-lnk" href="#">Más información <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+
+        <div class="be-evento rv">
+          <div class="be-evento-fecha">
+            <strong>24</strong>
+            <span>Jul</span>
+            <small>2026</small>
+          </div>
+          <div class="be-evento-body">
+            <span class="be-evento-tipo">Webinar</span>
+            <h3>Gobierno abierto y datos abiertos: buenas prácticas para dependencias de Hidalgo</h3>
+            <p>Sesión formativa sobre estándares de publicación de datos abiertos y cómo preparar a tu dependencia para el próximo lanzamiento de la plataforma de Datos Abiertos de Hidalgo.</p>
+            <div class="be-evento-meta">
+              <span>💻 En línea vía Zoom</span>
+              <span>🕘 10:00 – 12:30 hrs</span>
+            </div>
+            <a class="be-post-lnk" href="#">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="sep"><div class="sep-dot"></div></div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:1.25rem"><img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block"></div>
+          <strong>COEMERE</strong>
+          <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+          <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+        </div>
+        <div>
+          <h5>Navegación</h5>
+          <a href="#inicio" onclick="goHome()">Inicio</a>
+          <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+          <a href="#marco" onclick="goHome()">Marco legal</a>
+          <button onclick="showPage('plataformas')">Plataformas</button>
+          <button onclick="showPage('transparencia')">Transparencia</button>
+          <button onclick="showPage('blog')">Blog y eventos</button>
+          <button onclick="showPage('glosario')">Glosario ciudadano</button>
+          <a href="#contacto" onclick="goHome()">Contacto</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+          <a href="#">771 717 8300</a>
+          <a href="#">Pachuca de Soto, Hidalgo</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Gobierno del Estado de Hidalgo · COEMERE · Todos los derechos reservados</p>
+        <p>MVP 1.0 · En revisión</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ====== GLOSARIO CIUDADANO ====== -->
+<div class="page" id="page-glosario">
+  <div class="pg-head">
+    <div class="pg-h-inner">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al inicio
+      </button>
+      <div style="margin-bottom:1.5rem">
+        <img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:160px;height:auto;object-fit:contain;display:block;opacity:.95">
+      </div>
+      <p class="ey lt" style="margin-bottom:.6rem"><span style="width:20px;height:1px;background:var(--d2);display:inline-block;margin-right:10px;vertical-align:middle"></span>Recursos de consulta</p>
+      <h1><strong>Glosario</strong> ciudadano</h1>
+      <p>Terminología clave en materia de mejora regulatoria y gobierno digital, dirigida a trabajadores del sector público y ciudadanos en general.</p>
+    </div>
+  </div>
+  <div class="glosario-sec">
+    <div class="glosario-inner">
+
+      <!-- Búsqueda -->
+      <div class="glos-search">
+        <div class="glos-search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <input type="text" id="glos-input" placeholder="Buscar término..." oninput="filtrarGlosario()">
+      </div>
+
+      <!-- Índice alfabético -->
+      <div class="glos-alpha" id="glos-alpha"></div>
+
+      <!-- Términos -->
+      <div id="glos-contenido"></div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <p class="ey" style="margin-bottom:1.5rem">Preguntas frecuentes</p>
+        <h2 class="sh" style="margin-bottom:2rem">Lo que más nos <strong>preguntan</strong></h2>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿Qué es la mejora regulatoria y por qué es importante?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">La mejora regulatoria es el conjunto de políticas, acciones y herramientas orientadas a simplificar las normas, trámites y servicios del gobierno, reduciendo cargas administrativas para ciudadanos y empresas. Es importante porque mejora la eficiencia del gobierno, facilita la vida de las personas y fomenta el desarrollo económico y social.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿Qué dependencias pueden vincularse con la COEMERE?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Todas las dependencias y entidades del Gobierno del Estado de Hidalgo pueden vincularse con la COEMERE: secretarías, organismos descentralizados, empresas de participación estatal y municipios. El proceso inicia con el llenado del formulario de vinculación disponible en la sección de Contacto.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿Qué es un trámite y qué es un servicio público?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Un trámite es cualquier solicitud o gestión que un ciudadano o empresa realiza ante el gobierno para obtener un permiso, licencia, registro u otro beneficio, debiendo cumplir requisitos establecidos. Un servicio público es la prestación que el gobierno ofrece sin que el ciudadano deba iniciar una gestión formal: información, asesoría, atención médica, entre otros. La distinción es clave para catalogarlos correctamente en el RUTS 2.0.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿Qué es el RUTS 2.0 y cómo accedo a él?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">El RUTS 2.0 (Registro Único de Trámites y Servicios) es el catálogo oficial del Estado de Hidalgo donde todas las dependencias deben registrar y mantener actualizados sus trámites y servicios. Está disponible para dependencias de gobierno a través de la sección de Plataformas. Para solicitar acceso, contacta a la COEMERE mediante el formulario de vinculación.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿Cuánto tiempo toma un proceso de simplificación de trámites?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Los plazos varían según la complejidad del trámite y la disponibilidad de la dependencia. Un proceso estándar de diagnóstico y rediseño puede tomar entre 4 y 12 semanas. La COEMERE acompaña cada etapa y establece un calendario de trabajo acordado con la dependencia al inicio del proceso.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <p>¿La COEMERE atiende directamente a ciudadanos?</p>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">La COEMERE trabaja principalmente con dependencias del Gobierno del Estado de Hidalgo. Sin embargo, los ciudadanos pueden consultar el Glosario, acceder a las plataformas públicas y enviar comentarios o sugerencias a través del formulario de contacto. La mejora en los trámites que impulsa la COEMERE beneficia directamente a la ciudadanía.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="sep"><div class="sep-dot"></div></div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:1.25rem"><img src="assets/img/logo_footer.png" alt="Gobierno del Estado de Hidalgo" style="width:180px;height:auto;object-fit:contain;display:block"></div>
+          <strong>COEMERE</strong>
+          <small>Comisión Estatal de Mejora Regulatoria · Gobierno del Estado de Hidalgo</small>
+          <p>Impulsando la simplificación regulatoria y la agenda digital del Estado de Hidalgo.</p>
+        </div>
+        <div>
+          <h5>Navegación</h5>
+          <a href="#inicio" onclick="goHome()">Inicio</a>
+          <a href="#quienes" onclick="goHome()">Quiénes somos</a>
+          <a href="#marco" onclick="goHome()">Marco legal</a>
+          <button onclick="showPage('plataformas')">Plataformas</button>
+          <button onclick="showPage('transparencia')">Transparencia</button>
+          <button onclick="showPage('blog')">Blog y eventos</button>
+          <button onclick="showPage('glosario')">Glosario ciudadano</button>
+          <a href="#contacto" onclick="goHome()">Contacto</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="#">contacto@coemere.hidalgo.gob.mx</a>
+          <a href="#">771 717 8300</a>
+          <a href="#">Pachuca de Soto, Hidalgo</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Gobierno del Estado de Hidalgo · COEMERE · Todos los derechos reservados</p>
+        <p>MVP 1.0 · En revisión</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ── NAVEGACIÓN ── */
+function goHome(){
+  document.getElementById('lp').classList.remove('hidden');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  closeMenu();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showPage(id){
+  document.getElementById('lp').classList.add('hidden');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeMenu();
+  if(id==='glosario') renderGlosario();
+  if(id==='servidor') initServidorTabs();
+}
+function toggleMenu(){
+  document.getElementById('mobMenu').classList.toggle('open');
+  document.getElementById('hb').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('hb').classList.remove('open');
+}
+
+/* ── SCROLL REVEAL ── */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+/* ── TABS BLOG ── */
+function switchTab(btn, tabId){
+  document.querySelectorAll('.be-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.be-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+/* ── FAQ ── */
+function toggleFaq(el){
+  el.closest('.faq-item').classList.toggle('open');
+}
+
+/* ── GLOSARIO — datos ── */
+const TERMINOS = [
+  {t:'Acto administrativo',d:'Declaración de voluntad, de conocimiento o de juicio emitida por una autoridad en ejercicio de sus funciones, con efectos jurídicos sobre los ciudadanos o administrados.',cat:'Derecho administrativo'},
+  {t:'Agenda regulatoria',d:'Plan de trabajo que cada dependencia elabora para comprometerse con la simplificación y mejora de sus trámites y regulaciones durante un periodo determinado.',cat:'Mejora regulatoria'},
+  {t:'Análisis de impacto regulatorio',d:'Estudio sistemático que evalúa los efectos económicos, sociales y administrativos de una regulación nueva o existente antes de su implementación o modificación.',cat:'Mejora regulatoria'},
+  {t:'Carga administrativa',d:'Conjunto de obligaciones de información, requisitos y gestiones que los ciudadanos y empresas deben cumplir para realizar trámites ante el gobierno.',cat:'Simplificación'},
+  {t:'Catálogo de trámites',d:'Registro oficial y actualizado de todos los trámites y servicios que ofrece una dependencia, incluyendo requisitos, costos, tiempos de respuesta y fundamento legal.',cat:'Trámites'},
+  {t:'Dependencia',d:'Órgano de la administración pública estatal que forma parte del gobierno central, como las secretarías y sus unidades administrativas.',cat:'Estructura gubernamental'},
+  {t:'Digitalización',d:'Proceso de transformar trámites, servicios y procesos gubernamentales que se realizaban de forma presencial o en papel a formatos digitales accesibles a través de plataformas electrónicas.',cat:'Gobierno digital'},
+  {t:'Entidad paraestatal',d:'Organismo del sector público con personalidad jurídica propia, como organismos descentralizados, empresas de participación estatal y fideicomisos públicos.',cat:'Estructura gubernamental'},
+  {t:'Expediente electrónico',d:'Conjunto de documentos, datos e información que conforman un trámite o proceso administrativo, almacenados y gestionados en formato digital.',cat:'Gobierno digital'},
+  {t:'Fundamento legal',d:'Conjunto de leyes, reglamentos, acuerdos o disposiciones normativas que dan sustento jurídico a un trámite o regulación.',cat:'Derecho administrativo'},
+  {t:'Gobierno abierto',d:'Modelo de gestión pública basado en la transparencia, participación ciudadana, rendición de cuentas y colaboración entre gobierno y sociedad.',cat:'Gobierno digital'},
+  {t:'Gobierno digital',d:'Uso estratégico de tecnologías de la información y comunicación para modernizar la administración pública, mejorar los servicios y facilitar la relación entre gobierno y ciudadanos.',cat:'Gobierno digital'},
+  {t:'Interoperabilidad',d:'Capacidad de diferentes sistemas, plataformas o dependencias de gobierno para intercambiar y utilizar información de manera automática y estandarizada.',cat:'Gobierno digital'},
+  {t:'Ley NETB',d:'Ley Nacional para Eliminar Trámites Burocráticos. Establece las bases jurídicas para simplificar los trámites y servicios de la administración pública en los tres órdenes de gobierno.',cat:'Marco legal'},
+  {t:'Marco normativo',d:'Conjunto de leyes, reglamentos, normas, acuerdos y disposiciones administrativas que regulan el funcionamiento de una entidad pública o un ámbito de actividad.',cat:'Derecho administrativo'},
+  {t:'Mejora regulatoria',d:'Conjunto de políticas, procesos y herramientas orientadas a simplificar y mejorar la calidad de las regulaciones y trámites del gobierno, reduciendo costos y tiempos para ciudadanos y empresas.',cat:'Mejora regulatoria'},
+  {t:'Normateca',d:'Repositorio digital centralizado donde se almacena, organiza y da acceso público al marco normativo vigente de una institución o gobierno.',cat:'Marco legal'},
+  {t:'Organismo descentralizado',d:'Entidad pública con personalidad jurídica y patrimonio propios, creada por el gobierno para prestar servicios específicos o desarrollar actividades de interés público con mayor autonomía operativa.',cat:'Estructura gubernamental'},
+  {t:'Plataforma digital',d:'Sistema informático accesible a través de internet que permite a los usuarios realizar trámites, consultar información o acceder a servicios gubernamentales en línea.',cat:'Gobierno digital'},
+  {t:'Regulación',d:'Conjunto de normas, leyes y disposiciones emitidas por el gobierno que establecen derechos y obligaciones para ciudadanos, empresas y la propia administración pública.',cat:'Mejora regulatoria'},
+  {t:'RUTS 2.0',d:'Registro Único de Trámites y Servicios del Estado de Hidalgo. Catálogo oficial donde todas las dependencias registran y actualizan sus trámites y servicios públicos.',cat:'Plataformas'},
+  {t:'SAIR',d:'Sistema de Análisis de Impacto Regulatorio. Herramienta digital de la COEMERE para evaluar el efecto de regulaciones nuevas o vigentes sobre ciudadanos, empresas y la administración pública.',cat:'Plataformas'},
+  {t:'Servicio público',d:'Prestación que el gobierno ofrece a la ciudadanía para satisfacer necesidades colectivas, sin que el ciudadano deba iniciar necesariamente una gestión formal.',cat:'Trámites'},
+  {t:'Silencio administrativo',d:'Figura jurídica que opera cuando una autoridad no da respuesta a una solicitud dentro del plazo legal establecido. Puede ser positivo (se considera aprobado) o negativo (se considera negado).',cat:'Derecho administrativo'},
+  {t:'Simplificación de trámites',d:'Proceso de reducir pasos, requisitos, tiempos y costos de los trámites gubernamentales, manteniendo su objetivo de control o regulación pero haciéndolos más accesibles.',cat:'Simplificación'},
+  {t:'Transparencia',d:'Obligación del gobierno de poner a disposición pública la información sobre sus decisiones, recursos, resultados y funcionamiento, permitiendo la rendición de cuentas.',cat:'Gobierno abierto'},
+  {t:'Trámite',d:'Solicitud o gestión que un ciudadano, empresa u organización realiza ante el gobierno para obtener una autorización, permiso, licencia, registro u otro beneficio, debiendo cumplir requisitos establecidos en una norma.',cat:'Trámites'},
+  {t:'Ventanilla única',d:'Mecanismo que permite a ciudadanos y empresas realizar múltiples trámites o consultas en un solo punto de atención, físico o digital, evitando acudir a diferentes dependencias.',cat:'Simplificación'},
+  {t:'Visor Urbano',d:'Plataforma geoespacial de la COEMERE para visualizar información territorial del Estado de Hidalgo: usos de suelo, zonificación, infraestructura y datos urbanos en un mapa interactivo.',cat:'Plataformas'},
+];
+
+let glosarioRendered = false;
+
+function renderGlosario(){
+  if(glosarioRendered) return;
+  glosarioRendered = true;
+
+  const grupos = {};
+  TERMINOS.sort((a,b)=>a.t.localeCompare(b.t,'es')).forEach(t=>{
+    const l = t.t[0].toUpperCase();
+    if(!grupos[l]) grupos[l]=[];
+    grupos[l].push(t);
+  });
+
+  // Índice alfabético
+  const letras = Object.keys(grupos).sort();
+  const alpha = document.getElementById('glos-alpha');
+  'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('').forEach(l=>{
+    const btn = document.createElement('button');
+    btn.className = 'glos-alpha-btn';
+    btn.textContent = l;
+    if(!grupos[l]) btn.disabled = true;
+    else btn.onclick = ()=>{ document.getElementById('g-'+l).scrollIntoView({behavior:'smooth',block:'start'}); };
+    alpha.appendChild(btn);
+  });
+
+  // Contenido
+  const cont = document.getElementById('glos-contenido');
+  letras.forEach(l=>{
+    const grupo = document.createElement('div');
+    grupo.className = 'glos-grupo';
+    grupo.id = 'g-'+l;
+    grupo.innerHTML = `<div class="glos-letra">${l}</div>`;
+    grupos[l].forEach(t=>{
+      grupo.innerHTML += `
+        <div class="glos-item" data-term="${t.t.toLowerCase()}">
+          <div class="glos-term">${t.t}</div>
+          <div class="glos-def">${t.d}</div>
+          <span class="glos-tag">${t.cat}</span>
+        </div>`;
+    });
+    cont.appendChild(grupo);
+  });
+}
+
+function filtrarGlosario(){
+  const q = document.getElementById('glos-input').value.toLowerCase().trim();
+  document.querySelectorAll('#glos-contenido .glos-item').forEach(item=>{
+    const match = item.dataset.term.includes(q) || item.querySelector('.glos-def').textContent.toLowerCase().includes(q);
+    item.style.display = match ? '' : 'none';
+  });
+  document.querySelectorAll('#glos-contenido .glos-grupo').forEach(g=>{
+    const visible = [...g.querySelectorAll('.glos-item')].some(i=>i.style.display!=='none');
+    g.style.display = visible ? '' : 'none';
+  });
+}
+
+/* ── SERVIDOR PÚBLICO — TABS ── */
+let spInited = false;
+function initServidorTabs(){ spInited = true; }
+
+function spTab(btn, paneId){
+  document.querySelectorAll('.sp-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sp-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(paneId).classList.add('active');
+  // scroll to top of content area
+  document.getElementById('page-servidor').scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
