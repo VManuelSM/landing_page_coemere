@@ -4,12 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>COEMERE — Comisión Estatal de Mejora Regulatoria · Hidalgo</title>
+
+<!-- SEO -->
+<meta name="description" content="La COEMERE es la Autoridad Estatal de Simplificación y Digitalización del Gobierno del Estado de Hidalgo. Trabajamos para que los trámites y servicios públicos sean más simples, claros, seguros y accesibles para todas las personas.">
+<meta name="theme-color" content="#A02142">
+
+<!-- Open Graph / redes sociales (actualizar og:url y og:image con la URL absoluta al publicar) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="COEMERE · Gobierno del Estado de Hidalgo">
+<meta property="og:title" content="COEMERE — Comisión Estatal de Mejora Regulatoria · Hidalgo">
+<meta property="og:description" content="Autoridad Estatal de Simplificación y Digitalización. Trámites y servicios públicos más simples, claros, seguros y accesibles para todas las personas.">
+<meta property="og:image" content="assets/img/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23A02142'/%3E%3Ctext x='32' y='45' font-family='Montserrat,Arial,sans-serif' font-size='36' font-weight='700' fill='%23DDC9A3' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --g:#A02142;
   --g2:#691B31;
+  --g-light:#E3BCC6;
   --d:#BC955B;
   --d2:#DDC9A3;
   --gris:#98989A;
@@ -17,14 +37,70 @@
   --crema:#FAF8F5;
   --borde:#EAE6DF;
   --texto:#1A1410;
-  --texto2:#6B5E52;
+  --texto2:#5A4E43;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
+/* ACCESIBILIDAD */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:300;
+  background:var(--g2);color:#fff;font-size:13px;font-weight:600;
+  padding:12px 20px;text-decoration:none;border-radius:0 0 2px 0;
+}
+.skip-link:focus{left:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--d);outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{transition:none;opacity:1;transform:none}
+  .fu{animation:none;opacity:1}
+}
+
+/* HEADER GOBIERNO — componente institucional hidalgo.gob.mx */
+.gov-header{background:#fff;position:relative;z-index:210;font-family:'Montserrat',sans-serif}
+.gov-top{height:7px;background:#404041}
+.gov-bar{
+  display:flex;align-items:center;gap:clamp(1rem,4vw,4rem);
+  padding:13px clamp(1.25rem,5vw,3rem);
+}
+.gov-logo{flex-shrink:0}
+.gov-logo img{height:26px;display:block}
+.gov-links{display:flex;align-items:stretch;flex:1;justify-content:center;flex-wrap:wrap}
+.gov-item{position:relative}
+.gov-item>a{
+  display:block;padding:8px clamp(12px,2.5vw,32px);
+  font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:#54565A;text-decoration:none;transition:color .15s;
+}
+.gov-item>a:hover{color:var(--g)}
+.gov-item+.gov-item{border-left:1px solid #d7d7d7}
+.gov-sub{
+  position:absolute;top:100%;left:0;min-width:250px;
+  background:#fff;border:1px solid var(--borde);border-top:2px solid var(--g);
+  box-shadow:0 10px 24px rgba(0,0,0,.1);padding:6px 0;list-style:none;margin:0;
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .18s,transform .18s,visibility .18s;z-index:250;
+}
+.gov-item:hover .gov-sub,.gov-item:focus-within .gov-sub{opacity:1;visibility:visible;transform:none}
+.gov-sub a{
+  display:block;padding:9px 18px;font-size:12px;font-weight:400;
+  color:var(--texto2);text-decoration:none;transition:background .12s,color .12s;
+}
+.gov-sub a:hover{background:var(--crema);color:var(--g)}
+.gov-bottom{height:12px;background:var(--g)}
+@media(max-width:768px){
+  .gov-bar{flex-direction:column;gap:8px;padding:12px clamp(1.25rem,5vw,3rem) 10px}
+  .gov-logo img{height:22px}
+  .gov-item>a{padding:5px 10px;font-size:10.5px;letter-spacing:1px}
+  .gov-sub{display:none}
+}
+
 /* NAV */
+.nav-wrap{position:sticky;top:0;z-index:200}
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;height:60px;
+  position:relative;height:60px;
   background:white;border-bottom:1px solid var(--borde);
   box-shadow:0 1px 8px rgba(0,0,0,.06);
   display:flex;align-items:center;
@@ -42,16 +118,33 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   padding:6px 12px;border:none;background:none;cursor:pointer;
   font-family:'Montserrat',sans-serif;text-decoration:none;
   transition:color .15s;letter-spacing:.2px;
+  position:relative;
 }
 .nl:hover{color:var(--g)}
+.nl.nl-active{color:var(--g);font-weight:600}
+.nl.nl-active::after{
+  content:'';position:absolute;left:12px;right:12px;bottom:1px;height:2px;
+  background:var(--d);border-radius:1px;
+}
+
+/* Barra de progreso de lectura */
+.scroll-progress{
+  position:absolute;top:60px;left:0;height:2px;width:0%;
+  background:linear-gradient(to right,var(--d),var(--g));
+  z-index:201;transition:width .1s linear;
+}
+
+/* Transición entre landing y páginas internas */
+.landing,.page.active{transition:opacity .25s ease}
+body.vt .landing,body.vt .page.active{opacity:0}
 .nl.pill{
   color:var(--g);border:1px solid rgba(152,34,51,.25);
-  border-radius:4px;margin-left:6px;
+  border-radius:2px;margin-left:6px;
 }
 .nl.pill:hover{background:rgba(152,34,51,.06)}
 .nav-cta{
   color:white;font-size:12px;font-weight:600;
-  padding:7px 18px;border:none;border-radius:4px;
+  padding:7px 18px;border:none;border-radius:2px;
   background:var(--g);cursor:pointer;font-family:'Montserrat',sans-serif;
   text-decoration:none;transition:all .15s;letter-spacing:.3px;
   white-space:nowrap;
@@ -63,7 +156,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .mob-menu{
-  display:none;position:fixed;top:60px;left:0;right:0;z-index:199;
+  display:none;position:absolute;top:60px;left:0;right:0;z-index:199;
   background:var(--g2);flex-direction:column;
   border-bottom:1px solid rgba(188,149,91,.15);
 }
@@ -83,12 +176,12 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 
 /* HERO */
 .hero{
-  min-height:100vh;
-  background: linear-gradient(rgba(152, 34, 51, 0.80), rgba(152, 34, 51, 0.90)), url('assets/img/cover.jpg');
+  min-height:calc(100vh - 146px);
+  background: linear-gradient(100deg, rgba(105,27,49,.95) 0%, rgba(152,34,51,.85) 48%, rgba(160,33,66,.62) 100%), url('assets/img/cover.jpg');
   background-size: cover;
   background-position: center;
   display:flex;align-items:center;
-  padding:calc(60px + 5rem) clamp(1.25rem,5vw,3rem) 5rem;
+  padding:5rem clamp(1.25rem,5vw,3rem);
   position:relative;overflow:hidden;
 }
 /* Sutil línea diagonal dorada — única textura */
@@ -99,6 +192,28 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   background:linear-gradient(to bottom,transparent,rgba(188,149,91,.25) 30%,rgba(188,149,91,.25) 70%,transparent);
   pointer-events:none;
 }
+
+/* Red de nodos animada — la simplificación como sistema conectado */
+.hero-graphic{
+  position:absolute;right:0;top:0;bottom:0;width:min(46vw,640px);
+  z-index:1;opacity:.6;pointer-events:none;
+}
+.hg-svg{width:100%;height:100%}
+.hg-links line{
+  stroke:rgba(221,201,163,.32);stroke-width:1;
+  stroke-dasharray:5 5;animation:hgFlow 9s linear infinite;
+}
+.hg-nodes circle{fill:var(--d2);opacity:.85}
+.hg-nodes circle.hg-core{fill:var(--d);transform-origin:center;animation:hgPulse 2.6s ease-in-out infinite}
+.hg-nodes circle.hg-drift{animation:hgDrift 7s ease-in-out infinite}
+@keyframes hgFlow{to{stroke-dashoffset:-60}}
+@keyframes hgPulse{0%,100%{r:5}50%{r:8}}
+@keyframes hgDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:900px){.hero-graphic{display:none}}
+@media(prefers-reduced-motion:reduce){
+  .hg-links line,.hg-nodes circle.hg-core,.hg-nodes circle.hg-drift{animation:none}
+}
+
 .hero-inner{max-width:640px;position:relative;z-index:2}
 .hero-eyebrow{
   font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
@@ -110,23 +225,23 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   color:white;line-height:1.2;margin-bottom:1.5rem;
   letter-spacing:-.5px;
 }
-.hero h1 strong{font-weight:700;color:var(--d2)}
+.hero h1 strong{font-weight:600;color:var(--d2)}
 .hero-sub{
-  font-size:clamp(14px,1.5vw,15px);font-weight:300;
-  color:rgba(255,255,255,.65);line-height:1.9;
+  font-size:clamp(14px,1.5vw,15px);font-weight:400;
+  color:rgba(255,255,255,.65);line-height:1.75;
   margin-bottom:3rem;max-width:460px;
 }
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4rem}
 .btn-main{
   background:var(--d);color:white;font-family:'Montserrat',sans-serif;
-  font-size:12px;font-weight:600;padding:11px 26px;border-radius:4px;
+  font-size:12px;font-weight:600;padding:11px 26px;border-radius:2px;
   border:none;cursor:pointer;text-decoration:none;display:inline-block;
   transition:opacity .15s;letter-spacing:.5px;text-transform:uppercase;
 }
 .btn-main:hover{opacity:.88}
 .btn-ghost{
   background:none;color:rgba(255,255,255,.7);font-family:'Montserrat',sans-serif;
-  font-size:12px;font-weight:400;padding:11px 26px;border-radius:4px;
+  font-size:12px;font-weight:400;padding:11px 26px;border-radius:2px;
   border:1px solid rgba(255,255,255,.2);cursor:pointer;
   text-decoration:none;display:inline-block;transition:all .15s;letter-spacing:.3px;
 }
@@ -162,20 +277,32 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   font-size:clamp(24px,3.5vw,38px);font-weight:300;
   line-height:1.2;margin-bottom:1rem;letter-spacing:-.3px;
 }
-.sh strong{font-weight:700}
-.ss{font-size:14px;font-weight:300;color:var(--texto2);line-height:1.9;max-width:520px}
+.sh strong{font-weight:600}
+.ss{font-size:15px;font-weight:400;color:var(--texto2);line-height:1.75;max-width:520px}
 
 /* QUIÉNES — layout 2 col */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,7rem);align-items:start}
 
-/* MV Cards */
-.mv{padding:1.5rem 0;border-bottom:1px solid var(--borde)}
-.mv:first-child{border-top:1px solid var(--borde)}
+/* MV — acordeones desplegables */
+.mv{border-bottom:1px solid var(--borde)}
+.mv:first-of-type{border-top:1px solid var(--borde)}
 .mv-lbl{
   font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--g);margin-bottom:.6rem;
+  color:var(--g);
 }
-.mv p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85}
+.mv p{font-size:14px;font-weight:400;color:var(--texto2);line-height:1.7}
+.mv-toggle{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:1.2rem 0;background:none;border:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;text-align:left;
+}
+.mv-toggle:hover .mv-lbl{color:var(--g2)}
+.mv-toggle svg{width:15px;height:15px;stroke:var(--g);stroke-width:2;fill:none;flex-shrink:0;transition:transform .3s}
+.mv.open .mv-toggle svg{transform:rotate(45deg)}
+.mv-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.mv-body-in{overflow:hidden;min-height:0}
+.mv-content{padding-bottom:1.5rem}
+.mv.open .mv-body{grid-template-rows:1fr}
 
 /* Valores */
 .vals{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
@@ -183,6 +310,77 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   font-size:11px;font-weight:500;color:var(--texto2);
   padding:5px 14px;border:1px solid var(--borde);border-radius:2px;
   letter-spacing:.3px;
+}
+
+/* Listas dentro de Misión / Visión */
+.mv-list{list-style:none;padding:0;margin:.85rem 0 0}
+.mv-list li{
+  font-size:14px;font-weight:400;color:var(--texto2);line-height:1.75;
+  padding-left:15px;position:relative;margin-bottom:.55rem;
+}
+.mv-list li:last-child{margin-bottom:0}
+.mv-list li::before{
+  content:'';position:absolute;left:0;top:8px;width:4px;height:4px;
+  background:var(--d);border-radius:50%;
+}
+
+/* Valores ciudadanos — grid de tarjetas */
+.valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-top:1.5rem}
+.valor-card{background:white;padding:1.75rem;position:relative;transition:background .18s}
+.valor-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:transparent;transition:background .18s;
+}
+.valor-card:hover{background:var(--crema)}
+.valor-card:hover::before{background:var(--d)}
+.valor-card h4{font-size:14px;font-weight:600;margin-bottom:.5rem;color:var(--g)}
+.valor-card p{font-size:13px;font-weight:400;color:var(--texto2);line-height:1.75}
+.vicon{
+  width:38px;height:38px;border-radius:50%;background:rgba(160,33,66,.08);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1rem;
+  transition:background .18s,color .18s;
+}
+.vicon svg{width:19px;height:19px;stroke:var(--g);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s}
+.valor-card:hover .vicon{background:var(--g)}
+.valor-card:hover .vicon svg{stroke:#fff}
+.valor-featured{grid-column:span 2}
+.valor-featured h4{font-size:18px}
+.valor-featured p{font-size:13px;max-width:440px}
+.valor-featured .vicon{width:44px;height:44px}
+.valor-featured .vicon svg{width:22px;height:22px}
+
+/* Mensaje síntesis */
+.mensaje-sintesis{max-width:680px;margin:3rem auto 0;text-align:center;padding-top:2.5rem;border-top:1px solid var(--borde)}
+.mensaje-sintesis p{font-size:15px;font-weight:400;color:var(--texto2);line-height:1.75}
+.mensaje-sintesis strong{color:var(--g);font-weight:600}
+
+/* Comparativo antes / ahora — dumbbell (1 hue, 2 tonos) */
+.impacto{margin-top:5rem}
+.impacto-caption{font-size:11px;font-weight:500;color:var(--texto2);margin-top:.5rem}
+.dumbbell-legend{display:flex;align-items:center;gap:6px;margin:1.75rem 0 2rem;font-size:11px;font-weight:600;letter-spacing:.3px;color:var(--texto2)}
+.dl-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dl-dot.dl-before{background:var(--g-light)}
+.dl-dot.dl-after{background:var(--g);margin-left:16px}
+.dumbbells{display:flex;flex-direction:column;gap:2.25rem;max-width:640px}
+.dumbbell-row{display:flex;flex-direction:column;gap:.85rem}
+.db-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.db-label{font-size:12px;font-weight:500;color:var(--texto);letter-spacing:.2px}
+.db-delta{font-size:13px;font-weight:700;color:var(--g);white-space:nowrap}
+.db-track{position:relative;height:2px;background:var(--borde);border-radius:1px;margin:28px 44px 6px}
+.db-line{position:absolute;top:0;height:2px;background:var(--g-light);border-radius:1px;left:0;width:0;transition:width 1.1s cubic-bezier(.16,.84,.44,1)}
+.db-dot{
+  position:absolute;top:50%;width:12px;height:12px;border-radius:50%;
+  transform:translate(-50%,-50%);box-shadow:0 0 0 2px #fff;
+  opacity:0;transition:opacity .5s ease .5s;
+}
+.db-dot.db-before{background:var(--g-light)}
+.db-dot.db-after{background:var(--g)}
+.db-val{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:8px;font-size:11px;font-weight:700;color:var(--texto);white-space:nowrap}
+.db-dot.db-before .db-val{color:var(--texto2);font-weight:600}
+.rv.in .db-line{width:var(--w,0)}
+.rv.in .db-dot{opacity:1}
+@media(max-width:480px){
+  .db-track{margin:26px 8px 6px}
 }
 
 /* Video lado derecho */
@@ -259,7 +457,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   flex-shrink:0;width:24px;padding-top:2px;
 }
 .step-t{font-size:12px;font-weight:500;color:white;margin-bottom:2px}
-.step-d{font-size:11px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.6}
+.step-d{font-size:12px;font-weight:400;color:rgba(255,255,255,.55);line-height:1.6}
 
 .modelos{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde)}
 .modelo{
@@ -272,41 +470,16 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   color:var(--d);margin-bottom:.75rem;
 }
 .modelo h4{font-size:14px;font-weight:600;margin-bottom:.4rem;color:var(--texto)}
-.modelo p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75}
+.modelo p{font-size:13px;font-weight:400;color:var(--texto2);line-height:1.75}
 
-/* CTA BAND */
-.cta-band{
-  background:var(--g);padding:clamp(4rem,8vw,6rem) clamp(1.25rem,5vw,3rem);
-  position:relative;
-}
-.cta-band::after{
-  content:'';position:absolute;left:0;bottom:0;right:0;height:1px;
-  background:linear-gradient(to right,transparent,rgba(188,149,91,.4) 50%,transparent);
-}
-.cta-band h2{
-  font-size:clamp(22px,3vw,34px);font-weight:300;color:white;
-  margin-bottom:.75rem;letter-spacing:-.2px;
-}
-.cta-band h2 strong{font-weight:700}
-.cta-band p{font-size:14px;font-weight:300;color:rgba(255,255,255,.6);margin-bottom:2rem;max-width:480px;line-height:1.85}
-
-/* CONTACTO */
-.c-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(3rem,7vw,6rem);align-items:start}
-.c-left h3{font-size:clamp(20px,2.5vw,28px);font-weight:300;margin-bottom:.6rem;letter-spacing:-.2px}
-.c-left h3 strong{font-weight:700}
-.c-left>p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.9;margin-bottom:2rem}
-.dato{display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--borde);align-items:flex-start}
-.dato:first-of-type{border-top:1px solid var(--borde)}
-.dato-key{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);width:80px;flex-shrink:0;padding-top:1px}
-.dato-val{font-size:13px;font-weight:300;color:var(--texto);line-height:1.6}
 .horario{margin-top:1.5rem;padding:1.25rem;background:var(--crema);border:1px solid var(--borde)}
-.horario p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75}
+.horario p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.75}
 .horario strong{font-weight:600;color:var(--texto)}
 
 /* Form */
 .form{background:var(--crema);padding:clamp(1.5rem,3vw,2rem);border:1px solid var(--borde)}
 .form h4{font-size:14px;font-weight:600;margin-bottom:.25rem;color:var(--texto)}
-.form .fsub{font-size:12px;font-weight:300;color:var(--texto2);margin-bottom:1.5rem;line-height:1.65}
+.form .fsub{font-size:12px;font-weight:400;color:var(--texto2);margin-bottom:1.5rem;line-height:1.65}
 .fg{margin-bottom:.85rem}
 .fg label{
   display:block;font-size:10px;font-weight:600;letter-spacing:1px;
@@ -314,8 +487,8 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 }
 .fg input,.fg select,.fg textarea{
   width:100%;padding:9px 11px;
-  border:1px solid var(--borde);border-radius:0;
-  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;
+  border:1px solid var(--borde);border-radius:2px;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;
   background:white;color:var(--texto);outline:none;
   transition:border-color .15s;-webkit-appearance:none;
 }
@@ -331,10 +504,10 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
   padding:13px;border:none;cursor:pointer;margin-top:.5rem;
   transition:opacity .15s;letter-spacing:1.5px;text-transform:uppercase;
-  border-radius:0;
+  border-radius:2px;
 }
 .btn-form:hover{opacity:.88}
-.form-legal{font-size:10px;font-weight:300;color:var(--texto2);margin-top:.75rem;text-align:center;line-height:1.6}
+.form-legal{font-size:10px;font-weight:400;color:var(--texto2);margin-top:.75rem;text-align:center;line-height:1.6}
 
 /* FOOTER */
 .footer{background:var(--g2);padding:clamp(2.5rem,5vw,4rem) clamp(1.25rem,5vw,3rem) clamp(1.5rem,3vw,2rem)}
@@ -348,20 +521,20 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-bottom:2.5rem}
 .footer-brand strong{display:block;font-size:13px;font-weight:600;color:var(--d2);margin-bottom:2px}
 .footer-brand small{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1px;text-transform:uppercase}
-.footer-brand p{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.8;margin-top:.75rem;max-width:260px}
+.footer-brand p{font-size:12px;font-weight:400;color:rgba(255,255,255,.4);line-height:1.8;margin-top:.75rem;max-width:260px}
 .footer h5{font-size:9px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1rem}
-.footer a{font-size:12px;font-weight:300;color:rgba(255,255,255,.45);text-decoration:none;display:block;line-height:2.2;transition:color .15s;cursor:pointer;background:none;border:none;font-family:'Montserrat',sans-serif;text-align:left}
+.footer a{font-size:12px;font-weight:400;color:rgba(255,255,255,.45);text-decoration:none;display:block;line-height:2.2;transition:color .15s;cursor:pointer;background:none;border:none;font-family:'Montserrat',sans-serif;text-align:left}
 .footer a:hover,.footer button:hover{color:var(--d2)}
-.footer button{font-size:12px;font-weight:300;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;display:block;line-height:2.2;transition:color .15s;padding:0;text-align:left}
+.footer button{font-size:12px;font-weight:400;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;display:block;line-height:2.2;transition:color .15s;padding:0;text-align:left}
 .footer-bottom{
   border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;
 }
-.footer-bottom p{font-size:10px;font-weight:300;color:rgba(255,255,255,.25)}
+.footer-bottom p{font-size:10px;font-weight:400;color:rgba(255,255,255,.25)}
 
 /* SUBPÁGINAS */
 .pg-head{
-  background:var(--g);padding:calc(60px + 3.5rem) clamp(1.25rem,5vw,3rem) 3.5rem;
+  background:var(--g);padding:3.5rem clamp(1.25rem,5vw,3rem);
   position:relative;
 }
 .pg-head::after{
@@ -378,8 +551,8 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
 .back:hover{color:var(--d2)}
 .pg-head h1{font-size:clamp(26px,4vw,40px);font-weight:300;color:white;margin-bottom:.6rem;letter-spacing:-.3px}
-.pg-head h1 strong{font-weight:700}
-.pg-head p{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);max-width:480px;line-height:1.8}
+.pg-head h1 strong{font-weight:600}
+.pg-head p{font-size:13px;font-weight:400;color:rgba(255,255,255,.55);max-width:480px;line-height:1.8}
 
 /* PLATAFORMAS */
 .plat-sec{padding:clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem);background:var(--crema)}
@@ -393,7 +566,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .plat:hover{background:#fdfbf8;transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.05)}
 .plat-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--d);margin-bottom:1rem}
 .plat h3{font-size:18px;font-weight:700;margin-bottom:.5rem;color:var(--texto)}
-.plat p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1.5rem}
+.plat p{font-size:13px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:1.5rem}
 .plat-lnk{
   display:inline-flex;align-items:center;gap:6px;
   font-size:11px;font-weight:600;color:var(--g);text-decoration:none;
@@ -414,14 +587,14 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 }
 .trans-notice svg{width:16px;height:16px;stroke:#b58a1a;fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
 .trans-notice-txt h4{font-size:12px;font-weight:600;color:#7a5c10;margin-bottom:2px}
-.trans-notice-txt p{font-size:12px;font-weight:300;color:#8a6c20;line-height:1.6}
+.trans-notice-txt p{font-size:12px;font-weight:400;color:#8a6c20;line-height:1.6}
 .trans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde)}
 .trans-card{background:white;padding:1.75rem;transition:background .15s}
 .trans-card:hover{background:var(--crema)}
 .trans-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
 .trans-pending{font-size:10px;font-weight:600;color:#b58a1a;background:#fef3d0;padding:3px 10px;letter-spacing:.3px}
 .trans-card h4{font-size:13px;font-weight:600;margin-bottom:.3rem;color:var(--texto)}
-.trans-card p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.65}
+.trans-card p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.65}
 /* Art. 69 items */
 .trans-art{display:flex;flex-direction:column;gap:0;margin-bottom:3rem}
 .trans-art-item{
@@ -434,7 +607,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   flex-shrink:0;width:28px;padding-top:2px;
 }
 .trans-art-body h5{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.3rem}
-.trans-art-body p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.trans-art-body p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7}
 .trans-art-badge{
   display:inline-block;margin-top:.6rem;
   font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
@@ -455,7 +628,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .trans-portal:hover{background:var(--crema)}
 .trans-portal-cat{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d)}
 .trans-portal h5{font-size:13px;font-weight:600;color:var(--texto);margin:0}
-.trans-portal p{font-size:11px;font-weight:300;color:var(--texto2);line-height:1.5;margin:0}
+.trans-portal p{font-size:11px;font-weight:400;color:var(--texto2);line-height:1.5;margin:0}
 .trans-portal-arrow{
   margin-top:.5rem;font-size:10px;font-weight:600;color:var(--g);
   display:flex;align-items:center;gap:5px;
@@ -494,7 +667,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   color:var(--texto2);display:block;margin-bottom:.5rem;
 }
 .plat-prox-item strong{font-size:14px;font-weight:600;color:var(--texto);display:block;margin-bottom:.4rem;opacity:.7}
-.plat-prox-item p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7;opacity:.7}
+.plat-prox-item p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7;opacity:.7}
 
 /* BLOG Y EVENTOS — sección landing */
 .blog-band{
@@ -520,9 +693,9 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   display:flex;align-items:center;justify-content:center;margin:0 auto;
 }
 .blog-prox-icon svg{width:20px;height:20px;stroke:var(--d);fill:none;stroke-width:1.5}
-.blog-prox h4{font-size:15px;font-weight:300;color:white;letter-spacing:-.1px}
+.blog-prox h4{font-size:15px;font-weight:400;color:white;letter-spacing:-.1px}
 .blog-prox h4 strong{font-weight:700;color:var(--d2)}
-.blog-prox p{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;max-width:340px}
+.blog-prox p{font-size:12px;font-weight:400;color:rgba(255,255,255,.4);line-height:1.75;max-width:340px}
 .blog-two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(188,149,91,.12)}
 .blog-col{background:var(--g2);padding:2.5rem}
 .blog-col-title{
@@ -568,8 +741,8 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 }
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .be-prox h3{font-size:22px;font-weight:300;color:var(--texto);letter-spacing:-.2px}
-.be-prox h3 strong{font-weight:700;color:var(--g)}
-.be-prox p{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85;max-width:380px}
+.be-prox h3 strong{font-weight:600;color:var(--g)}
+.be-prox p{font-size:13px;font-weight:400;color:var(--texto2);line-height:1.7;max-width:380px}
 .be-prox small{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--texto2);opacity:.6}
 
 /* SUBPÁGINA GLOSARIO */
@@ -581,7 +754,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 }
 .glos-search input{
   flex:1;padding:11px 16px;border:none;outline:none;
-  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;color:var(--texto);
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;color:var(--texto);
   background:transparent;
 }
 .glos-search input::placeholder{color:var(--texto2);opacity:.6}
@@ -597,7 +770,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   font-size:11px;font-weight:600;color:var(--texto2);
   background:none;border:1px solid var(--borde);
   padding:4px 10px;cursor:pointer;font-family:'Montserrat',sans-serif;
-  transition:all .15s;border-radius:0;
+  transition:all .15s;border-radius:2px;
 }
 .glos-alpha-btn:hover,.glos-alpha-btn.active{background:var(--g);color:white;border-color:var(--g)}
 .glos-alpha-btn:disabled{opacity:.3;cursor:default}
@@ -611,7 +784,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 }
 .glos-item:last-child{border-bottom:none}
 .glos-term{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.25rem}
-.glos-def{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.8}
+.glos-def{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.8}
 .glos-tag{
   display:inline-block;font-size:9px;font-weight:600;letter-spacing:.8px;
   text-transform:uppercase;color:var(--d);background:rgba(188,149,91,.1);
@@ -629,7 +802,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .faq-item.open .faq-q svg{transform:rotate(45deg)}
 .faq-a{
   display:none;padding:0 0 1.1rem;
-  font-size:12px;font-weight:300;color:var(--texto2);line-height:1.85;
+  font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7;
 }
 .faq-item.open .faq-a{display:block}
 
@@ -655,7 +828,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .be-post-feat-body{padding:2rem}
 .be-post-meta{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--texto2);margin-bottom:.75rem}
 .be-post-feat-title{font-size:clamp(16px,2vw,20px);font-weight:700;color:var(--texto);line-height:1.3;margin-bottom:.75rem}
-.be-post-feat-desc{font-size:13px;font-weight:300;color:var(--texto2);line-height:1.85;margin-bottom:1.5rem}
+.be-post-feat-desc{font-size:13px;font-weight:400;color:var(--texto2);line-height:1.7;margin-bottom:1.5rem}
 .be-post-cat{
   position:relative;z-index:1;
   font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
@@ -670,7 +843,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   color:var(--d);display:block;margin-bottom:.6rem;
 }
 .be-post-title{font-size:14px;font-weight:600;color:var(--texto);line-height:1.4;margin-bottom:.5rem}
-.be-post-excerpt{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
+.be-post-excerpt{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
 .be-post-footer{display:flex;justify-content:space-between;align-items:center}
 .be-post-date{font-size:10px;font-weight:400;color:var(--texto2)}
 .be-post-lnk{
@@ -701,7 +874,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   color:var(--d);display:block;margin-bottom:.5rem;
 }
 .be-evento h3{font-size:14px;font-weight:600;color:var(--texto);margin-bottom:.5rem;line-height:1.35}
-.be-evento p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:.75rem}
+.be-evento p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:.75rem}
 .be-evento-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;margin-bottom:1rem}
 .be-evento-meta span{font-size:11px;font-weight:400;color:var(--texto2)}
 
@@ -737,8 +910,9 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .two,.netb,.c-grid{grid-template-columns:1fr}
+  .two,.netb{grid-template-columns:1fr}
   .netb{gap:2rem}
+  .valores-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   .nav-links,.nav-cta{display:none}
@@ -746,6 +920,8 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   .hero::after{display:none}
   .hero-nums{gap:1.5rem}
   .modelos{grid-template-columns:1fr}
+  .valores-grid{grid-template-columns:1fr}
+  .valor-featured{grid-column:span 1}
   .footer-grid{grid-template-columns:1fr 1fr}
   .plat-grid,.trans-grid,.trans-portales{grid-template-columns:1fr}
   .trans-portal[style*="span 2"]{grid-column:span 1}
@@ -814,13 +990,13 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .cal-ev-body{padding:1.25rem 1.5rem}
 .cal-ev-tipo{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d);display:block;margin-bottom:.4rem}
 .cal-ev-title{font-size:13px;font-weight:600;color:var(--texto);margin-bottom:.3rem;line-height:1.35}
-.cal-ev-desc{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.cal-ev-desc{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7}
 .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:3rem}
 .cap-card{background:white;padding:1.75rem;position:relative;transition:background .15s}
 .cap-card:hover{background:var(--crema)}
 .cap-cat{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--d);display:block;margin-bottom:.6rem}
 .cap-title{font-size:14px;font-weight:700;color:var(--texto);margin-bottom:.5rem;line-height:1.3}
-.cap-desc{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
+.cap-desc{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:1rem}
 .cap-meta{display:flex;flex-wrap:wrap;gap:.3rem .75rem}
 .cap-meta span{font-size:10px;font-weight:500;color:var(--texto2)}
 .cap-badge{position:absolute;top:1rem;right:1rem;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px}
@@ -832,15 +1008,15 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .cap-btn svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5}
 .ruts-banner{background:var(--g);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;margin-bottom:3rem}
 .ruts-banner h3{font-size:clamp(16px,2vw,20px);font-weight:700;color:white;margin-bottom:.4rem}
-.ruts-banner p{font-size:13px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.7}
+.ruts-banner p{font-size:13px;font-weight:400;color:rgba(255,255,255,.65);line-height:1.7}
 .ruts-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--d2);background:rgba(221,201,163,.15);border:1px solid rgba(221,201,163,.3);padding:3px 10px;display:inline-block;margin-bottom:.6rem}
 .sol-form{background:var(--crema);border:1px solid var(--borde);padding:2rem 2.5rem;max-width:680px}
 .sol-form h3{font-size:16px;font-weight:700;color:var(--texto);margin-bottom:.4rem}
-.sol-form>.sub{font-size:13px;font-weight:300;color:var(--texto2);margin-bottom:1.75rem;line-height:1.75}
+.sol-form>.sub{font-size:13px;font-weight:400;color:var(--texto2);margin-bottom:1.75rem;line-height:1.75}
 .rec-banner{background:var(--g2);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.25rem;margin-bottom:2.5rem;border-left:4px solid var(--d)}
 .rec-banner-icon{width:40px;height:40px;border-radius:50%;background:rgba(188,149,91,.2);border:1px solid rgba(188,149,91,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rec-banner-icon svg{width:18px;height:18px;stroke:var(--d);fill:none;stroke-width:1.5}
-.rec-banner p{font-size:13px;font-weight:300;color:rgba(255,255,255,.8);line-height:1.7}
+.rec-banner p{font-size:13px;font-weight:400;color:rgba(255,255,255,.8);line-height:1.7}
 .rec-banner strong{color:var(--d2)}
 .rec-grid{display:flex;flex-direction:column;gap:1px;background:var(--borde);border:1px solid var(--borde)}
 .rec-item{display:grid;grid-template-columns:56px 1fr auto;gap:0;background:white;transition:background .15s}
@@ -848,21 +1024,21 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .rec-num{background:var(--g);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--d2)}
 .rec-body{padding:1.25rem 1.5rem}
 .rec-body h5{font-size:13px;font-weight:700;color:var(--texto);margin-bottom:.3rem}
-.rec-body p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.rec-body p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7}
 .rec-badge-wrap{padding:1.25rem 1.5rem;display:flex;align-items:center}
 .rec-fix{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:rgba(105,27,49,.08);color:var(--g);border:1px solid rgba(105,27,49,.15);padding:4px 10px;white-space:nowrap}
 .sp-glos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:2.5rem}
 .sp-glos-item{background:white;padding:1.5rem 1.75rem;transition:background .15s}
 .sp-glos-item:hover{background:var(--crema)}
 .sp-glos-term{font-size:13px;font-weight:700;color:var(--g);margin-bottom:.35rem}
-.sp-glos-def{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.8}
+.sp-glos-def{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.8}
 .sp-glos-tag{display:inline-block;margin-top:.5rem;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--d);background:rgba(188,149,91,.1);border:1px solid rgba(188,149,91,.2);padding:2px 8px}
 .sp-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--borde);border:1px solid var(--borde);margin-bottom:2.5rem}
 .sp-contact-card{background:white;padding:2rem;display:flex;flex-direction:column;gap:.75rem}
 .sp-contact-icon{width:44px;height:44px;border-radius:50%;background:rgba(105,27,49,.06);border:1px solid rgba(105,27,49,.12);display:flex;align-items:center;justify-content:center}
 .sp-contact-icon svg{width:18px;height:18px;stroke:var(--g);fill:none;stroke-width:1.5}
 .sp-contact-card h4{font-size:14px;font-weight:700;color:var(--texto);margin:0}
-.sp-contact-card p{font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7;margin:0}
+.sp-contact-card p{font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7;margin:0}
 .sp-contact-val{font-size:13px;font-weight:500;color:var(--texto)}
 .sp-btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:10px 20px;border:none;cursor:pointer;letter-spacing:.3px;text-decoration:none;border-radius:2px;transition:opacity .15s;align-self:flex-start;margin-top:.25rem}
 .sp-btn-wa:hover{opacity:.88}
@@ -872,7 +1048,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 .sp-btn-mail svg{width:15px;height:15px;stroke:var(--g);fill:none;stroke-width:2}
 .reg-intro{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;margin-bottom:3rem}
 .reg-why{list-style:none;padding:0;margin:1.25rem 0 0;display:flex;flex-direction:column;gap:0}
-.reg-why li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--borde);align-items:flex-start;font-size:12px;font-weight:300;color:var(--texto2);line-height:1.7}
+.reg-why li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--borde);align-items:flex-start;font-size:12px;font-weight:400;color:var(--texto2);line-height:1.7}
 .reg-why li:first-child{border-top:1px solid var(--borde)}
 .reg-why-n{font-size:10px;font-weight:700;color:var(--g);flex-shrink:0;width:22px;padding-top:1px}
 @media(max-width:900px){
@@ -893,8 +1069,55 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 </head>
 <body>
 
+<a class="skip-link" href="#quienes">Saltar al contenido principal</a>
+
+<!-- HEADER GOBIERNO DEL ESTADO DE HIDALGO (componente institucional) -->
+<header class="gov-header">
+  <div class="gov-top"></div>
+  <div class="gov-bar">
+    <div class="gov-logo">
+      <img src="https://cdn.hidalgo.gob.mx/componentes/header/Logo_gob_hidalgo.svg" alt="hidalgo.gob.mx — Gobierno del Estado de Hidalgo">
+    </div>
+    <nav class="gov-links" aria-label="Portales del Gobierno del Estado de Hidalgo">
+      <div class="gov-item">
+        <a href="https://gobierno.hidalgo.gob.mx/">Gobierno</a>
+        <ul class="gov-sub">
+          <li><a href="https://gobierno.hidalgo.gob.mx/gobernador">Gobernador</a></li>
+          <li><a href="https://gobierno.hidalgo.gob.mx/dependencias">Dependencias estatales</a></li>
+          <li><a href="https://gobierno.hidalgo.gob.mx/dependenciasfederales">Dependencias federales</a></li>
+          <li><a href="https://gobierno.hidalgo.gob.mx/gabinete">Gabinete</a></li>
+        </ul>
+      </div>
+      <div class="gov-item">
+        <a href="https://ruts.hidalgo.gob.mx/">Trámites</a>
+        <ul class="gov-sub">
+          <li><a href="https://ruts.hidalgo.gob.mx/">Trámites y servicios</a></li>
+          <li><a href="https://ruts.hidalgo.gob.mx/servicios">Más servicios</a></li>
+          <li><a href="https://ruts-admin.hidalgo.gob.mx/">Administración</a></li>
+        </ul>
+      </div>
+      <div class="gov-item">
+        <a href="https://transparencia.hidalgo.gob.mx/">Transparencia</a>
+        <ul class="gov-sub">
+          <li><a href="https://transparencia.hidalgo.gob.mx/">Art. 69 Ley de Transparencia</a></li>
+          <li><a href="https://consultapublicamx.inai.org.mx/vut-web/?idSujetoObigadoParametro=2131&amp;idEntidadParametro=13&amp;idSectorParametro=21">Plataforma Nacional de Transparencia</a></li>
+          <li><a href="https://hacienda.hidalgo.gob.mx/TransparenciaSecretaria">Transparencia Financiera</a></li>
+          <li><a href="https://transparencia.hidalgo.gob.mx/pag/acc_imfo.html">Acceso a la Información</a></li>
+          <li><a href="https://transparencia.hidalgo.gob.mx/pag/historica21.html">Histórica (Art. 22)</a></li>
+          <li><a href="https://transparencia.hidalgo.gob.mx/pag/part_ciudadana.html">Participación Ciudadana</a></li>
+        </ul>
+      </div>
+      <div class="gov-item">
+        <a href="https://ehacienda.hidalgo.gob.mx/TRANSPARENCIAFINANZAS/VentanillaCiudadana#">Pagos</a>
+      </div>
+    </nav>
+  </div>
+  <div class="gov-bottom"></div>
+</header>
+
 <!-- NAV -->
-<nav class="nav">
+<div class="nav-wrap">
+<nav class="nav" aria-label="Navegación principal">
   <a class="nav-brand" href="#" onclick="goHome()">
     <img src="assets/img/logo.png" alt="Gobierno del Estado de Hidalgo" class="nav-gov">
     <div class="nav-name">COEMERE <small>Gobierno del Estado de Hidalgo</small></div>
@@ -908,9 +1131,10 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
     <button class="nl pill" onclick="showPage('glosario')">Glosario</button>
     <button class="nl pill" onclick="showPage('servidor')">Servidor Público</button>
   </div>
-  <a class="nav-cta" href="#contacto" onclick="goHome()">Vincularse</a>
-  <button class="hamburger" id="hb" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a class="nav-cta" href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
+  <button class="hamburger" id="hb" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobMenu"><span></span><span></span><span></span></button>
 </nav>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="mob-menu" id="mobMenu">
   <a href="#quienes" onclick="goHome();closeMenu()">Quiénes somos</a>
@@ -920,7 +1144,8 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   <button onclick="showPage('blog');closeMenu()">Blog y eventos</button>
   <button onclick="showPage('glosario');closeMenu()">Glosario ciudadano</button>
   <button onclick="showPage('servidor');closeMenu()">Servidor Público</button>
-  <a class="mob-cta" href="#contacto" onclick="goHome();closeMenu()">Vincularse →</a>
+  <a class="mob-cta" href="mailto:contacto@coemere.hidalgo.gob.mx" onclick="closeMenu()">Contacto →</a>
+</div>
 </div>
 
 <!-- ====== LANDING ====== -->
@@ -932,14 +1157,40 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
     <h1 class="fu d2">La comisión que<br><strong>simplifica el gobierno</strong></h1>
     <p class="hero-sub fu d3">Acompañamos a las dependencias del Estado de Hidalgo en la modernización de sus trámites y servicios públicos.</p>
     <div class="hero-actions fu d4">
-      <a class="btn-main" href="#contacto">Vincula tu dependencia</a>
-      <a class="btn-ghost" href="#quienes">Conocer más</a>
+      <a class="btn-main" href="#quienes">Conocer más</a>
+      <a class="btn-ghost" href="#" onclick="showPage('plataformas');return false">Nuestras plataformas</a>
     </div>
     <div class="hero-nums fu d5">
       <div class="hero-num"><strong>12+</strong><span>Dependencias</span></div>
       <div class="hero-num"><strong>4</strong><span>Plataformas</span></div>
       <div class="hero-num"><strong>NETB</strong><span>Marco legal</span></div>
     </div>
+  </div>
+  <div class="hero-graphic" aria-hidden="true">
+    <svg class="hg-svg" viewBox="0 0 420 500" preserveAspectRatio="xMidYMid meet">
+      <g class="hg-links">
+        <line x1="80" y1="90" x2="210" y2="60"/>
+        <line x1="210" y1="60" x2="340" y2="130"/>
+        <line x1="80" y1="90" x2="150" y2="210"/>
+        <line x1="150" y1="210" x2="340" y2="130"/>
+        <line x1="150" y1="210" x2="240" y2="320"/>
+        <line x1="340" y1="130" x2="360" y2="280"/>
+        <line x1="240" y1="320" x2="360" y2="280"/>
+        <line x1="80" y1="90" x2="100" y2="230"/>
+        <line x1="100" y1="230" x2="150" y2="210"/>
+        <line x1="240" y1="320" x2="230" y2="420"/>
+      </g>
+      <g class="hg-nodes">
+        <circle class="hg-drift" cx="80" cy="90" r="4"/>
+        <circle cx="210" cy="60" r="3"/>
+        <circle class="hg-drift" cx="340" cy="130" r="5"/>
+        <circle cx="150" cy="210" r="4"/>
+        <circle class="hg-drift" cx="240" cy="320" r="3"/>
+        <circle cx="360" cy="280" r="4"/>
+        <circle cx="100" cy="230" r="3"/>
+        <circle class="hg-core" cx="230" cy="420" r="6"/>
+      </g>
+    </svg>
   </div>
 </section>
 
@@ -950,20 +1201,56 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
       <div class="rv">
         <p class="ey">La comisión</p>
         <h2 class="sh">Modernizamos<br><strong>la regulación estatal</strong></h2>
-        <p class="ss" style="margin-bottom:2.5rem">La COEMERE es el organismo del Gobierno del Estado de Hidalgo especializado en simplificar trámites y digitalizar servicios públicos mediante mejora regulatoria y tecnología.</p>
+        <p class="ss" style="margin-bottom:2.5rem">Somos la Autoridad Estatal de Simplificación y Digitalización. Trabajamos para que los trámites y servicios públicos sean más simples, claros, seguros y accesibles para todas las personas.</p>
+
         <div class="mv">
-          <p class="mv-lbl">Misión</p>
-          <p>Impulsar la mejora regulatoria mediante el diseño de plataformas digitales, la simplificación de trámites y el acompañamiento técnico a las dependencias del Estado de Hidalgo.</p>
+          <button class="mv-toggle" onclick="toggleMv(this)" aria-expanded="false">
+            <span class="mv-lbl">¿Quiénes somos?</span>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="mv-body"><div class="mv-body-in"><div class="mv-content">
+          <p>Coordinamos esfuerzos con dependencias, entidades, municipios y autoridades competentes para reducir requisitos innecesarios, evitar que las personas entreguen la misma información varias veces y lograr que cada vez más servicios puedan iniciarse, consultarse o resolverse por medios digitales.</p>
+          <p style="margin-top:.85rem">Promovemos un canal de comunicación con la ciudadanía, a través de la plataforma de Protesta Ciudadana, para que las personas puedan calificar trámites y servicios, reportar obstáculos y ayudar a mejorar la atención pública. Además, impulsamos el Sistema de Análisis de Impacto Regulatorio para que como ciudadano puedas revisar que las reglas y trámites generen beneficios reales y no cargas innecesarias antes de su publicación y que entren en vigor.</p>
+          </div></div></div>
         </div>
+
         <div class="mv">
-          <p class="mv-lbl">Visión</p>
-          <p>Ser la agencia digital de referencia en México para la modernización regulatoria estatal, consolidando a Hidalgo como un gobierno eficiente, transparente e innovador.</p>
+          <button class="mv-toggle" onclick="toggleMv(this)" aria-expanded="false">
+            <span class="mv-lbl">Nuestra misión</span>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="mv-body"><div class="mv-body-in"><div class="mv-content">
+          <p>Existimos para que hacer un trámite con el gobierno sea cada vez más simple, claro, seguro y accesible. Para lograrlo, trabajamos en:</p>
+          <ul class="mv-list">
+            <li>Eliminar trámites y reducir requisitos innecesarios.</li>
+            <li>Reducir el tiempo que destinas a filas, traslados y visitas a ventanillas.</li>
+            <li>Desarrollar soluciones digitales para que cada vez más servicios puedan realizarse con menos vueltas y mayor claridad.</li>
+            <li>Poner a tu disposición herramientas para calificar trámites y servicios, reportar anomalías y señalar problemas en la atención, a través de Protesta Ciudadana.</li>
+            <li>Revisar, mediante el Sistema de Análisis de Impacto Regulatorio, que las nuevas reglas y trámites sean claros, proporcionales y útiles para ti.</li>
+            <li>Cuidar tus datos y documentos mediante procesos seguros, responsables y transparentes.</li>
+            <li>Promover una atención pública clara, respetuosa, trazable y sin espacios para favoritismos.</li>
+            <li>Conectar mejor a las instituciones para que el gobierno comparta información de manera ordenada y no tengas que presentarla una y otra vez.</li>
+          </ul>
+          </div></div></div>
         </div>
-        <div class="vals">
-          <span class="val">Innovación</span>
-          <span class="val">Transparencia</span>
-          <span class="val">Eficiencia</span>
-          <span class="val">Colaboración</span>
+
+        <div class="mv">
+          <button class="mv-toggle" onclick="toggleMv(this)" aria-expanded="false">
+            <span class="mv-lbl">Nuestra visión al 2030</span>
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="mv-body"><div class="mv-body-in"><div class="mv-content">
+          <p>Queremos que, hacia 2030, las personas en Hidalgo puedan acceder a trámites y servicios públicos de forma fácil, segura y oportuna, sin importar su edad, nivel de estudios, ubicación o condición.</p>
+          <p style="margin-top:.85rem">Aspiramos a que Hidalgo sea reconocido por construir un gobierno que realmente facilite la vida de las personas: más confiable, más transparente, más conectado y más cercano. Eso significa que:</p>
+          <ul class="mv-list">
+            <li>Las comunidades más alejadas también tengan acceso a mejores servicios públicos, oportunos y diseñados para reducir la brecha digital.</li>
+            <li>Las personas mayores, personas con discapacidad, hablantes de lenguas indígenas y grupos en situación de vulnerabilidad tengan servicios más accesibles y comprensibles.</li>
+            <li>El gobierno use datos de manera responsable para tomar mejores decisiones, mejorar servicios y utilizar mejor los recursos públicos.</li>
+            <li>Las personas puedan conocer el avance de sus trámites y entender con claridad qué sigue, quién resuelve y en qué tiempos.</li>
+            <li>La ciudadanía cuente con canales para evaluar trámites y servicios, presentar protestas ciudadanas y participar en la mejora continua del gobierno.</li>
+            <li>Las reglas y trámites se puedan evaluar y opinar para evitar cargas innecesarias y asegurar que sirvan al interés público.</li>
+          </ul>
+          </div></div></div>
         </div>
       </div>
       <div class="rv" style="transition-delay:.12s">
@@ -994,6 +1281,88 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
         </div>
       </div>
     </div>
+
+    <div class="rv" style="margin-top:5rem">
+      <p class="ey">Lo que te garantizamos</p>
+      <h3 class="sh" style="font-size:clamp(18px,2.5vw,28px)">Nuestros<br><strong>valores ciudadanos</strong></h3>
+      <p class="ss">Los principios que guían cada trámite, plataforma y decisión de la COEMERE.</p>
+      <div class="valores-grid">
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20"/><line x1="5" y1="8" x2="19" y2="8"/><path d="M5 8l-2.5 5a2.5 2.5 0 0 0 5 0L5 8z"/><path d="M19 8l-2.5 5a2.5 2.5 0 0 0 5 0L19 8z"/><line x1="8" y1="20" x2="16" y2="20"/></svg></div>
+          <h4>Reglas claras</h4><p>Hacemos las cosas conforme a la ley, con trato igualitario y certeza para todas las personas.</p>
+        </div>
+        <div class="valor-card valor-featured">
+          <div class="vicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></div>
+          <h4>Primero las personas</h4><p>Diseñamos trámites, plataformas y servicios pensando en tus necesidades, no en la complejidad interna del gobierno.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+          <h4>Transparencia</h4><p>Impulsamos procesos claros, información pública, seguimiento y canales de protesta ciudadana para que sepas qué pasa con tus trámites y puedas reportar problemas.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="2.8"/><circle cx="16.5" cy="9" r="2.3"/><path d="M3.8 19a5.3 5.3 0 0 1 10.4 0"/><path d="M13.5 19a4.2 4.2 0 0 1 7.5-2.6"/></svg></div>
+          <h4>Nadie se queda atrás</h4><p>Trabajamos para que todas las personas, vivan donde vivan, puedan acceder a servicios públicos más simples, seguros y cercanos.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.6-5.7L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.6 5.7L4 16"/><path d="M4 20v-4h4"/></svg></div>
+          <h4>Mejorar siempre</h4><p>Usamos tecnología, datos, evaluación ciudadana y análisis de impacto regulatorio para simplificar procesos, corregir lo que no funciona y ofrecer mejores servicios.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="7" y1="8" x2="11" y2="16"/><line x1="17" y1="8" x2="13" y2="16"/></svg></div>
+          <h4>Gobierno conectado</h4><p>Coordinamos a instituciones estatales y municipales para que el gobierno funcione de manera más ordenada y no te pida lo mismo varias veces.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>Cero favoritismos</h4><p>Impulsamos procesos digitales, claros y trazables para reducir espacios de discrecionalidad y fortalecer la confianza ciudadana.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <h4>Cuidamos tu tiempo y tu dinero</h4><p>Medimos si nuestras acciones reducen tiempos, costos, requisitos y traslados. Si no genera beneficio público, debe revisarse.</p>
+        </div>
+        <div class="valor-card">
+          <div class="vicon"><svg viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+          <h4>Datos seguros</h4><p>Protegemos tu información y promovemos procesos responsables para usar solo los datos necesarios.</p>
+        </div>
+      </div>
+
+      <div class="impacto rv">
+        <p class="ey">Ejemplo ilustrativo</p>
+        <h3 class="sh" style="font-size:clamp(18px,2.5vw,28px)">Lo que cambia<br><strong>cuando simplificamos un trámite</strong></h3>
+        <p class="ss">Meta de referencia al aplicar simplificación y digitalización sobre un trámite típico de gobierno.</p>
+        <div class="dumbbell-legend"><span class="dl-dot dl-before"></span>Antes<span class="dl-dot dl-after"></span>Ahora</div>
+        <div class="dumbbells">
+          <div class="dumbbell-row">
+            <div class="db-top"><span class="db-label">Tiempo promedio del trámite</span><span class="db-delta">−80%</span></div>
+            <div class="db-track" style="--w:65%">
+              <div class="db-line" style="left:20%"></div>
+              <div class="db-dot db-before" style="left:85%"><span class="db-val">5 días</span></div>
+              <div class="db-dot db-after" style="left:20%"><span class="db-val">1 día</span></div>
+            </div>
+          </div>
+          <div class="dumbbell-row">
+            <div class="db-top"><span class="db-label">Requisitos solicitados</span><span class="db-delta">−63%</span></div>
+            <div class="db-track" style="--w:53%">
+              <div class="db-line" style="left:35%"></div>
+              <div class="db-dot db-before" style="left:88%"><span class="db-val">8 requisitos</span></div>
+              <div class="db-dot db-after" style="left:35%"><span class="db-val">3 requisitos</span></div>
+            </div>
+          </div>
+          <div class="dumbbell-row">
+            <div class="db-top"><span class="db-label">Visitas a ventanilla</span><span class="db-delta">−100%</span></div>
+            <div class="db-track" style="--w:69%">
+              <div class="db-line" style="left:6%"></div>
+              <div class="db-dot db-before" style="left:75%"><span class="db-val">3 visitas</span></div>
+              <div class="db-dot db-after" style="left:6%"><span class="db-val">0 visitas</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="impacto-caption">Ejemplo de referencia, no corresponde a una medición oficial publicada.</p>
+      </div>
+
+      <div class="mensaje-sintesis">
+        <p>La simplificación y la digitalización no son solo herramientas tecnológicas: son una forma de construir un <strong>gobierno más cercano, eficiente, transparente y centrado en las personas</strong>, donde la ciudadanía pueda evaluar los servicios que recibe y el gobierno revise sus reglas.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1011,7 +1380,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
       <div>
         <p class="ey lt">Fundamento vigente</p>
         <h3 style="font-size:clamp(18px,2.5vw,26px);font-weight:300;color:white;line-height:1.3;margin-bottom:.75rem">Ley Nacional para Eliminar<br><strong>Trámites Burocráticos</strong></h3>
-        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:1.25rem">Es la ley que obliga a las dependencias del gobierno a hacer sus trámites más sencillos, rápidos y accesibles para las personas. La COEMERE coordina su implementación en el Estado de Hidalgo.</p>
+        <p style="font-size:13px;font-weight:400;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1.25rem">Es la ley que obliga a las dependencias del gobierno a hacer sus trámites más sencillos, rápidos y accesibles para las personas. La COEMERE coordina su implementación en el Estado de Hidalgo.</p>
         <div class="netb-tags">
           <span class="ntag">Simplificación de trámites</span>
           <span class="ntag">Digitalización</span>
@@ -1073,7 +1442,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
       <div>
         <p class="ey lt">Comunicación institucional</p>
         <h2 class="sh" style="color:white;margin-bottom:.25rem">Blog <strong style="color:var(--d2)">y eventos</strong></h2>
-        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7">Noticias, publicaciones y próximas actividades de la COEMERE.</p>
+        <p style="font-size:13px;font-weight:400;color:rgba(255,255,255,.45);line-height:1.7">Noticias, publicaciones y próximas actividades de la COEMERE.</p>
       </div>
       <button class="blog-ver-mas" onclick="showPage('blog')">
         Ver todo <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1133,61 +1502,6 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-band">
-  <div class="w rv">
-    <h2>¿Tu dependencia necesita<br><strong>simplificar o digitalizar sus trámites?</strong></h2>
-    <p>Cuéntanos qué necesitas. Un especialista de la COEMERE te contactará en menos de 3 días hábiles.</p>
-    <a class="btn-main" href="#contacto">Iniciar vinculación →</a>
-  </div>
-</div>
-
-<!-- CONTACTO -->
-<section class="s" id="contacto">
-  <div class="w">
-    <div class="c-grid">
-      <div class="c-left rv">
-        <p class="ey">Trabaja con nosotros</p>
-        <h3><strong>Vincula tu dependencia</strong><br>con la COEMERE</h3>
-        <p>Canal oficial para que las dependencias del Gobierno del Estado de Hidalgo inicien un proceso de colaboración.</p>
-        <div class="dato"><span class="dato-key">Dirección</span><span class="dato-val">Edificio Innovación, Ex hacienda de la Concepción 3, 42162 La Concepción, Hgo.</span></div>
-        <div class="dato"><span class="dato-key">Correo</span><span class="dato-val">contacto@coemere.hidalgo.gob.mx</span></div>
-        <div class="dato"><span class="dato-key">Teléfono</span><span class="dato-val">771 717 8300 Ext. [pendiente]</span></div>
-        <div class="horario"><p><strong>Lunes a viernes · 9:00 a 18:00 hrs</strong><br>Días hábiles del Gobierno del Estado de Hidalgo</p></div>
-      </div>
-      <div class="rv" style="transition-delay:.12s">
-        <div class="form">
-          <h4>Formulario de vinculación interinstitucional</h4>
-          <p class="fsub">Completa los datos de tu dependencia. Recibirás respuesta en un máximo de 3 días hábiles.</p>
-          <div class="fr">
-            <div class="fg"><label>Nombre</label><input type="text" placeholder="María González López"></div>
-            <div class="fg"><label>Cargo</label><input type="text" placeholder="Directora de Trámites"></div>
-          </div>
-          <div class="fg"><label>Dependencia</label><input type="text" placeholder="Nombre oficial de la dependencia"></div>
-          <div class="fr">
-            <div class="fg"><label>Correo</label><input type="email" placeholder="nombre@hidalgo.gob.mx"></div>
-            <div class="fg"><label>Teléfono</label><input type="tel" placeholder="771 000 0000"></div>
-          </div>
-          <div class="fg">
-            <label>Tipo de apoyo</label>
-            <select>
-              <option value="">Selecciona una opción</option>
-              <option>Simplificación de trámites</option>
-              <option>Digitalización de servicios</option>
-              <option>Registro Estatal de Trámites</option>
-              <option>Análisis de impacto regulatorio</option>
-              <option>Otro</option>
-            </select>
-          </div>
-          <div class="fg"><label>Descripción</label><textarea placeholder="Describe brevemente el contexto y lo que buscan mejorar..."></textarea></div>
-          <button class="btn-form">Enviar solicitud</button>
-          <p class="form-legal">Al enviar autorizas el uso de tus datos para fines de contacto institucional por la COEMERE.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
@@ -1210,7 +1524,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
         <button onclick="showPage('transparencia')">Transparencia</button>
         <button onclick="showPage('blog')">Blog y eventos</button>
         <button onclick="showPage('glosario')">Glosario ciudadano</button>
-        <a href="#contacto" onclick="goHome()">Contacto</a>
+        <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
       </div>
       <div>
         <h5>Contacto</h5>
@@ -1568,7 +1882,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <span class="sp-glos-tag">Comunicación</span>
         </div>
       </div>
-      <p style="font-size:12px;font-weight:300;color:var(--texto2);text-align:center;padding:1rem 0;border-top:1px solid var(--borde)">
+      <p style="font-size:12px;font-weight:400;color:var(--texto2);text-align:center;padding:1rem 0;border-top:1px solid var(--borde)">
         ¿Buscas otro término? <button onclick="showPage('glosario')" style="color:var(--g);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;padding:0;text-decoration:underline">Ver glosario completo →</button>
       </p>
     </div>
@@ -1609,7 +1923,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
       <div class="horario" style="max-width:680px">
         <p><strong>Horario de atención</strong><br>Lunes a viernes · 9:00 a 18:00 hrs · Días hábiles del Gobierno del Estado de Hidalgo</p>
       </div>
-      <p style="font-size:12px;font-weight:300;color:var(--texto2);margin-top:1.5rem;line-height:1.7;max-width:560px">
+      <p style="font-size:12px;font-weight:400;color:var(--texto2);margin-top:1.5rem;line-height:1.7;max-width:560px">
         ¿Tu consulta puede esperar hasta el siguiente día hábil? Primero revisa el <strong>Glosario clave</strong> y los <strong>Recordatorios</strong> de esta sección; es posible que encuentres la respuesta sin necesidad de contactar al equipo.
       </p>
     </div>
@@ -1622,7 +1936,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
         <div>
           <p class="ey" style="margin-bottom:.5rem">Vinculación oficial</p>
           <h2 class="sh" style="margin-bottom:.5rem">Registro de <strong>enlace</strong></h2>
-          <p style="font-size:14px;font-weight:300;color:var(--texto2);line-height:1.9;margin-bottom:1rem">Completa este formulario para registrarte como enlace de simplificación o de mejora regulatoria ante la COEMERE. Este registro es obligatorio para participar en las capacitaciones y cumplir con las obligaciones regulatorias de tu dependencia.</p>
+          <p style="font-size:14px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:1rem">Completa este formulario para registrarte como enlace de simplificación o de mejora regulatoria ante la COEMERE. Este registro es obligatorio para participar en las capacitaciones y cumplir con las obligaciones regulatorias de tu dependencia.</p>
           <ul class="reg-why">
             <li><span class="reg-why-n">01</span> Recibirás notificaciones automáticas de fechas clave y recordatorios de los periodos de carga.</li>
             <li><span class="reg-why-n">02</span> Podrás inscribirte directamente a las capacitaciones disponibles desde tu perfil.</li>
@@ -1688,7 +2002,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <button onclick="showPage('blog')">Blog y eventos</button>
           <button onclick="showPage('glosario')">Glosario ciudadano</button>
           <button onclick="showPage('servidor')">Servidor Público</button>
-          <a href="#contacto" onclick="goHome()">Contacto</a>
+          <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
         </div>
         <div>
           <h5>Contacto</h5>
@@ -1759,7 +2073,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <button onclick="showPage('transparencia')">Transparencia</button>
           <button onclick="showPage('blog')">Blog y eventos</button>
           <button onclick="showPage('glosario')">Glosario ciudadano</button>
-          <a href="#contacto" onclick="goHome()">Contacto</a>
+          <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
         </div>
         <div>
           <h5>Contacto</h5>
@@ -1845,7 +2159,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 
       <!-- Portales institucionales de transparencia -->
       <p class="trans-portales-title">Portales oficiales de transparencia</p>
-      <p style="font-size:12px;font-weight:300;color:var(--texto2);line-height:1.75;margin-bottom:0">Mientras se completa esta sección, puedes acceder a las plataformas institucionales del Gobierno del Estado de Hidalgo para consultar información pública, ejercer tu derecho de acceso a la información y revisar el estado financiero del gobierno.</p>
+      <p style="font-size:12px;font-weight:400;color:var(--texto2);line-height:1.75;margin-bottom:0">Mientras se completa esta sección, puedes acceder a las plataformas institucionales del Gobierno del Estado de Hidalgo para consultar información pública, ejercer tu derecho de acceso a la información y revisar el estado financiero del gobierno.</p>
       <div class="trans-portales">
         <a class="trans-portal" href="https://www.plataformadetransparencia.org.mx/" target="_blank" rel="noopener">
           <span class="trans-portal-cat">Nacional</span>
@@ -1900,7 +2214,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <button onclick="showPage('transparencia')">Transparencia</button>
           <button onclick="showPage('blog')">Blog y eventos</button>
           <button onclick="showPage('glosario')">Glosario ciudadano</button>
-          <a href="#contacto" onclick="goHome()">Contacto</a>
+          <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
         </div>
         <div>
           <h5>Contacto</h5>
@@ -2115,7 +2429,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <button onclick="showPage('transparencia')">Transparencia</button>
           <button onclick="showPage('blog')">Blog y eventos</button>
           <button onclick="showPage('glosario')">Glosario ciudadano</button>
-          <a href="#contacto" onclick="goHome()">Contacto</a>
+          <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
         </div>
         <div>
           <h5>Contacto</h5>
@@ -2181,7 +2495,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
             <p>¿Qué dependencias pueden vincularse con la COEMERE?</p>
             <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-a">Todas las dependencias y entidades del Gobierno del Estado de Hidalgo pueden vincularse con la COEMERE: secretarías, organismos descentralizados, empresas de participación estatal y municipios. El proceso inicia con el llenado del formulario de vinculación disponible en la sección de Contacto.</div>
+          <div class="faq-a">Todas las dependencias y entidades del Gobierno del Estado de Hidalgo pueden vincularse con la COEMERE: secretarías, organismos descentralizados, empresas de participación estatal y municipios. El proceso inicia escribiendo a contacto@coemere.hidalgo.gob.mx.</div>
         </div>
 
         <div class="faq-item">
@@ -2197,7 +2511,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
             <p>¿Qué es el RUTS 2.0 y cómo accedo a él?</p>
             <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-a">El RUTS 2.0 (Registro Único de Trámites y Servicios) es el catálogo oficial del Estado de Hidalgo donde todas las dependencias deben registrar y mantener actualizados sus trámites y servicios. Está disponible para dependencias de gobierno a través de la sección de Plataformas. Para solicitar acceso, contacta a la COEMERE mediante el formulario de vinculación.</div>
+          <div class="faq-a">El RUTS 2.0 (Registro Único de Trámites y Servicios) es el catálogo oficial del Estado de Hidalgo donde todas las dependencias deben registrar y mantener actualizados sus trámites y servicios. Está disponible para dependencias de gobierno a través de la sección de Plataformas. Para solicitar acceso, escribe a contacto@coemere.hidalgo.gob.mx.</div>
         </div>
 
         <div class="faq-item">
@@ -2238,7 +2552,7 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
           <button onclick="showPage('transparencia')">Transparencia</button>
           <button onclick="showPage('blog')">Blog y eventos</button>
           <button onclick="showPage('glosario')">Glosario ciudadano</button>
-          <a href="#contacto" onclick="goHome()">Contacto</a>
+          <a href="mailto:contacto@coemere.hidalgo.gob.mx">Contacto</a>
         </div>
         <div>
           <h5>Contacto</h5>
@@ -2257,33 +2571,95 @@ body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--texto);over
 
 <script>
 /* ── NAVEGACIÓN ── */
+function transitionSwap(mutateFn){
+  document.body.classList.add('vt');
+  setTimeout(()=>{
+    mutateFn();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.remove('vt')));
+  },160);
+}
 function goHome(){
-  document.getElementById('lp').classList.remove('hidden');
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  transitionSwap(()=>{
+    document.getElementById('lp').classList.remove('hidden');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  });
   closeMenu();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function showPage(id){
-  document.getElementById('lp').classList.add('hidden');
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
+  transitionSwap(()=>{
+    document.getElementById('lp').classList.add('hidden');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if(id==='glosario') renderGlosario();
+    if(id==='servidor') initServidorTabs();
+  });
+  document.querySelectorAll('.nl.nl-active').forEach(l=>l.classList.remove('nl-active'));
   window.scrollTo({top:0,behavior:'smooth'});
   closeMenu();
-  if(id==='glosario') renderGlosario();
-  if(id==='servidor') initServidorTabs();
 }
 function toggleMenu(){
+  const hb = document.getElementById('hb');
   document.getElementById('mobMenu').classList.toggle('open');
-  document.getElementById('hb').classList.toggle('open');
+  hb.classList.toggle('open');
+  hb.setAttribute('aria-expanded', hb.classList.contains('open'));
 }
 function closeMenu(){
   document.getElementById('mobMenu').classList.remove('open');
-  document.getElementById('hb').classList.remove('open');
+  const hb = document.getElementById('hb');
+  hb.classList.remove('open');
+  hb.setAttribute('aria-expanded','false');
 }
 
 /* ── SCROLL REVEAL ── */
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+/* ── CONTADORES ANIMADOS ── */
+function animateCount(el){
+  const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+  if(!m) return;
+  const target = parseInt(m[1],10), suffix = m[2], dur = 1100, start = performance.now();
+  function step(t){
+    const p = Math.min((t-start)/dur,1);
+    const eased = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(target*eased) + suffix;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const countObs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ animateCount(e.target); countObs.unobserve(e.target); }
+}),{threshold:.6});
+document.querySelectorAll('.hero-num strong, .cifra strong').forEach(el=>{
+  if(/^\d/.test(el.textContent.trim())) countObs.observe(el);
+});
+
+/* ── BARRA DE PROGRESO DE SCROLL ── */
+const scrollBar = document.getElementById('scrollProgress');
+function updateScrollProgress(){
+  const d = document.documentElement;
+  const max = d.scrollHeight - d.clientHeight;
+  scrollBar.style.width = (max>0 ? (d.scrollTop/max)*100 : 0) + '%';
+}
+window.addEventListener('scroll', updateScrollProgress, {passive:true});
+updateScrollProgress();
+
+/* ── ENLACE ACTIVO EN NAV (landing) ── */
+const navSpyLinks = document.querySelectorAll('.nl[href^="#"]');
+if(navSpyLinks.length){
+  const navSpyObs = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const href = '#'+e.target.id;
+      navSpyLinks.forEach(l=>l.classList.toggle('nl-active', l.getAttribute('href')===href));
+    });
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  ['quienes','marco'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) navSpyObs.observe(el);
+  });
+}
 
 /* ── TABS BLOG ── */
 function switchTab(btn, tabId){
@@ -2296,6 +2672,25 @@ function switchTab(btn, tabId){
 /* ── FAQ ── */
 function toggleFaq(el){
   el.closest('.faq-item').classList.toggle('open');
+}
+// Accesibilidad: los encabezados del FAQ son divs — hacerlos operables por teclado
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.setAttribute('tabindex','0');
+  q.setAttribute('role','button');
+  q.setAttribute('aria-expanded','false');
+  q.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); q.click(); }
+  });
+  q.addEventListener('click',()=>{
+    q.setAttribute('aria-expanded', q.closest('.faq-item').classList.contains('open'));
+  });
+});
+
+/* ── MISIÓN / VISIÓN — ACORDEONES ── */
+function toggleMv(btn){
+  const item = btn.closest('.mv');
+  item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', item.classList.contains('open'));
 }
 
 /* ── GLOSARIO — datos ── */
